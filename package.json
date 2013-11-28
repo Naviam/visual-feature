@@ -1,6 +1,6 @@
 {
   "name": "Visual-Feature",
-  "version": "0.0.0",
+  "version": "0.0.0-1",
   "description": "Release Manager",
   "main": "app.js",
   "repository": "",
@@ -13,6 +13,7 @@
     "github": "~0.1.10",
     "jade": "~0.35.0",
     "mocha": "~1.13.0",
+    "node-logentries": "0.1.2",
     "passport": "~0.1.17",
     "passport-github": "~0.1.5",
     "passport-oauth": "~1.0.0",

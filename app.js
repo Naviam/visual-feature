@@ -12,6 +12,10 @@ var sns = require('./routes/sns');
 var utils = require('./utils/utils');
 //var sources = require('./utils/sources');
 var usersRepository = require('./repositories/usersRepository');
+var logentries = require('node-logentries');
+var log = logentries.logger({
+  token:'49b3c292-089e-4d6e-a58c-9bfaddb3ac86'
+});
 
 var app = express();
 //var io = socket.listen(app);
@@ -99,6 +103,7 @@ app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
   function(req, res) {
     // Successful authentication, redirect home.
+    log.info("user has been successfully authenticated.");
     res.redirect('/dashboard');
   });
 app.get('/logout', function(req, res){
