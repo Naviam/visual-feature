@@ -14,14 +14,30 @@ GET /stages
 < 200
 < Content-Type: application/json
 { "stages": [
-{ "environment": "Development", "branch": "dev", "project": "ServiceChannel", "id": 1},
-{ "environment": "QA1", "branch": "qa1", "project": "ServiceChannel", "id": 2},
-{ "environment": "QA2", "branch": "qa2", "project": "ServiceChannel", "id": 3},
-{ "environment": "Sandbox1", "branch": "master", "project": "ServiceChannel", "id": 4},
-{ "environment": "Sandbox2", "branch": "master", "project": "ServiceChannel", "id": 5},
-{ "environment": "Staging", "branch": "staging", "project": "ServiceChannel", "id": 6},
-{ "environment": "Production", "branch": "master", "project": "ServiceChannel", "id": 7}
+{ "name": "R&D", "branch": "dev", "project": "ServiceChannel", "id": 1},
+{ "name": "QA1", "branch": "qa1", "project": "ServiceChannel", "id": 2},
+{ "name": "QA2", "branch": "qa2", "project": "ServiceChannel", "id": 3},
+{ "name": "LoadTests", "branch": "load", "project": "ServiceChannel", "id": 4},
+{ "name": "Sandbox1", "branch": "sb1", "project": "ServiceChannel", "id": 5},
+{ "name": "Sandbox2", "branch": "sb2", "project": "ServiceChannel", "id": 6},
+{ "name": "Staging", "branch": "master", "project": "ServiceChannel", "id": 7},
+{ "name": "Production", "branch": "master", "project": "ServiceChannel", "id": 8}
 ] }
+
+Add new stage
+POST /stages
+> Content-Type: application/json
+{ "name":"Sandbox3", "branch": "sb3", "project": "ServiceChannel" }
+< 201
+< Content-Type: application/json
+< Location: "/stages/9"
+{ "id": 9 }
+
+PUT /stages/2
+> Content-Type: application/json
+{ "branch": "sandbox3" }
+< 200
+< Content-Type: application/json
 
 
 --
