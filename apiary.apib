@@ -6,11 +6,30 @@ Managing lifecycle of a feature from idea to implementation and deployment.
 ---
 
 --
+Stages Resources
+The following is a section of resources related to the states / stages feature should go through in it's life.
+--
+List stages.
+GET /stages
+< 200
+< Content-Type: application/json
+{ "stages": [
+{ "environment": "Development", "branch": "dev", "project": "ServiceChannel", "id": 1},
+{ "environment": "QA1", "branch": "qa1", "project": "ServiceChannel", "id": 2},
+{ "environment": "QA2", "branch": "qa2", "project": "ServiceChannel", "id": 3},
+{ "environment": "Sandbox1", "branch": "master", "project": "ServiceChannel", "id": 4},
+{ "environment": "Sandbox2", "branch": "master", "project": "ServiceChannel", "id": 5},
+{ "environment": "Staging", "branch": "staging", "project": "ServiceChannel", "id": 6},
+{ "environment": "Production", "branch": "master", "project": "ServiceChannel", "id": 7}
+] }
+
+
+--
 Feature State Resources
 The following is a section of resources related to the state of the feature
 --
 List features in a particular state. (comment block again in Markdown)
-GET /shopping-cart
+GET /features
 < 200
 < Content-Type: application/json
 { "items": [
