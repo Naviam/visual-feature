@@ -14,14 +14,14 @@ GET /stages
 < 200
 < Content-Type: application/json
 { "stages": [
-{ "name": "R&D", "branch": "dev", "project": "ServiceChannel", "id": 1},
-{ "name": "QA1", "branch": "qa1", "project": "ServiceChannel", "id": 2},
-{ "name": "QA2", "branch": "qa2", "project": "ServiceChannel", "id": 3},
-{ "name": "LoadTests", "branch": "load", "project": "ServiceChannel", "id": 4},
-{ "name": "Sandbox1", "branch": "sb1", "project": "ServiceChannel", "id": 5},
-{ "name": "Sandbox2", "branch": "sb2", "project": "ServiceChannel", "id": 6},
-{ "name": "Staging", "branch": "master", "project": "ServiceChannel", "id": 7},
-{ "name": "Production", "branch": "master", "project": "ServiceChannel", "id": 8}
+{ "name": "R&D", "branch": "dev", "project": "ServiceChannel", "id": 1, "url": "/stages/1"},
+{ "name": "QA1", "branch": "qa1", "project": "ServiceChannel", "id": 2, "url": "/stages/2"},
+{ "name": "QA2", "branch": "qa2", "project": "ServiceChannel", "id": 3, "url": "/stages/3"},
+{ "name": "LoadTests", "branch": "load", "project": "ServiceChannel", "id": 4, "url": "/stages/4"},
+{ "name": "Sandbox1", "branch": "sb1", "project": "ServiceChannel", "id": 5, "url": "/stages/5"},
+{ "name": "Sandbox2", "branch": "sb2", "project": "ServiceChannel", "id": 6, "url": "/stages/6"},
+{ "name": "Staging", "branch": "master", "project": "ServiceChannel", "id": 7, "url": "/stages/7"},
+{ "name": "Production", "branch": "master", "project": "ServiceChannel", "id": 8, "url": "/stages/8"}
 ] }
 
 Add new stage
@@ -48,13 +48,22 @@ List features in a particular state. (comment block again in Markdown)
 GET /features
 < 200
 < Content-Type: application/json
-{ "items": [
-{ "url": "/shopping-cart/1", "product":"2ZY48XPZ", "quantity": 1, "name": "New socks", "price": 1.25 }
-] }
+{
+    "features": [
+    {
+        "id": "",
+        "url": "/features/1",
+        "stage_url": "/stages/1",
+        "quantity": 1,
+        "name": "New socks",
+        "price": 1.25
+    },
+    ]
+}
 
 
-Save new products in your shopping cart
-POST /shopping-cart
+Add new feature
+POST /features
 > Content-Type: application/json
 { "product":"1AB23ORM", "quantity": 2 }
 < 201
