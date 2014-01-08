@@ -82,6 +82,49 @@ DELETE /accounts/3
 }
 
 --
+Account Users Resources
+The following is a section of resources related to the account users. An idea is that more than one user can have access to service account.
+--
+
+List account users
+GET /accounts/2/users
+< 200
+< Content-Type: application/json
+{
+    "users": [
+        { "id": 1, "email": "vhatalski@naviam.com" },
+        { "id": 2, "email": "alex@servicechannel.com" }
+    ]
+}
+
+Get single user
+GET /accounts/2/users/1
+< 200
+< Content-Type: application/json
+{
+    "id": 2, 
+    "email": "alex@servicechannel.com"
+}
+
+Add new user to account
+POST /accounts/2/users
+> Content-Type: application/json
+{
+    "email": "pmironchik@naviam.com",
+    "password": "245t4t45"
+}
+< 201
+< Content-Type: application/json
+< Location: "/accounts/2/users/3"
+{ "id": 3 }
+
+Remove user from account
+DELETE /accounts/2/users/3
+< 204
+< Content-Type: application/json
+{}
+
+--
 Stages Resources
 The following is a section of resources related to the states / stages feature should go through in it's life.
 --
