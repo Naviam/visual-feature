@@ -47,7 +47,7 @@ passport.deserializeUser(function(obj, done) {
 
 // all environments
 app.set('host', process.env.IP || "127.0.0.1");
-app.set('port', process.env.PORT || 3000);
+app.set('port', 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use(express.favicon());
