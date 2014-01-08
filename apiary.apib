@@ -32,6 +32,18 @@ GET /accounts
     ]
 }
 
+Get single account by id.
+GET /accounts/2
+< 200
+< Content-Type: application/json
+{
+    "id": 2,
+    "url": "/accounts/2",
+    "name": "ServiceChannel",
+    "status": "active",
+    "description": "ServiceChannel company account"
+}
+
 Create new app account.
 POST /accounts
 > Content-Type: application/json
@@ -45,6 +57,28 @@ POST /accounts
 {
     "id": 3,
     "status": "pending confirmation"
+}
+
+Update account name / description
+PUT /accounts/2
+> Content-Type: application/json
+{
+    "name": "ServiceChannel2",
+    "description": "test account"
+}
+< 200
+< Content-Type: application/json
+< Location: "/accounts/2"
+{
+    "id": 2
+}
+
+Remove account (close).
+DELETE /accounts/3
+< 200
+{
+    "id": 3,
+    "status": "removed"
 }
 
 --
@@ -97,24 +131,36 @@ GET /features
 {
     "features": [
     {
-        "id": "",
+        "id": 1,
         "url": "/features/1",
         "stage_url": "/stages/1",
-        "quantity": 1,
-        "name": "New socks",
-        "price": 1.25
+        "story_url": "/stories/1",
+        "pull_request_url": "/pullrequests/1"
+        "title": "My first feature",
+        "description": "what should be done"
     },
-    ]
+    {
+        "id": 2,
+        "url": "/features/2",
+        "stage_url": "/stages/1",
+        "story_url": "/stories/2",
+        "pull_request_url": "/pullrequests/2"
+        "title": "My second feature",
+        "description": "what should be done"
+    }]
 }
-
 
 Add new feature
 POST /features
 > Content-Type: application/json
-{ "product":"1AB23ORM", "quantity": 2 }
+{
+    "title":"1AB23ORM",
+    "description": "2"
+}
 < 201
 < Content-Type: application/json
-{ "status": "created", "url": "/shopping-cart/2" }
+< Location: /features/3
+{ "id": 3}
 
 
 -- Payment Resources --
