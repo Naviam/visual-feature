@@ -6,6 +6,48 @@ Managing lifecycle of a feature from idea to implementation and deployment.
 ---
 
 --
+Accounts Resources
+The following is a section of resources related to app accounts.
+--
+List accounts (only for admin access).
+GET /accounts
+< 200
+< Content-Type: application/json
+{
+    "accounts": [
+        {
+            "id": 1,
+            "url": "/accounts/1",
+            "name": "Naviam",
+            "status": "active",
+            "description": "Naviam company account"
+        },
+        {
+            "id": 2,
+            "url": "/accounts/2",
+            "name": "ServiceChannel",
+            "status": "active",
+            "description": "ServiceChannel company account"
+        }
+    ]
+}
+
+Create new app account.
+POST /accounts
+> Content-Type: application/json
+{
+    "name": "eLifeLab",
+    "description": "eLifeLab company account"
+}
+< 201
+< Content-Type: application/json
+< Location: "/accounts/3"
+{
+    "id": 3,
+    "status": "pending confirmation"
+}
+
+--
 Stages Resources
 The following is a section of resources related to the states / stages feature should go through in it's life.
 --
@@ -27,7 +69,11 @@ GET /stages
 Add new stage
 POST /stages
 > Content-Type: application/json
-{ "name":"Sandbox3", "branch": "sb3", "project": "ServiceChannel" }
+{
+    "name":"Sandbox3",
+    "branch": "sb3",
+    "project": "ServiceChannel"
+}
 < 201
 < Content-Type: application/json
 < Location: "/stages/9"
