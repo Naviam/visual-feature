@@ -35,7 +35,44 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 5316,
+				"buffer_size": 4448,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "model/usersRepository.js",
+			"settings":
+			{
+				"buffer_size": 849,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/routes.js",
+			"settings":
+			{
+				"buffer_size": 1253,
+				"line_ending": "Unix",
+				"name": "routes.js"
+			}
+		},
+		{
+			"contents": "var mongoose = require('mongoose');\nvar Schema = mongoose.Schema;\n\nvar userSchema = new Schema({\n  email:  String,\n  password: String,\n  body:   String,\n  comments: [{ body: String, date: Date }],\n  date: { type: Date, default: Date.now },\n  hidden: Boolean,\n  meta: {\n    votes: Number,\n    favs:  Number\n  }\n});\n\nmongoose.connect('mongodb://localhost/test');\n\nvar User = mongoose.model('User', { name: String, github: String });\n\nvar u = new User({ name: 'Zildjian' });\nu.save(function (err) {\n  if (err) // ...\n  console.log('meow');\n});",
+			"file": "model/user.js",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 540,
+				"line_ending": "Unix",
+				"name": "user.js"
+			}
+		},
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 883,
 				"line_ending": "Unix"
 			}
 		}
@@ -51,7 +88,7 @@
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 153.0,
 		"history":
 		[
 		]
@@ -67,6 +104,13 @@
 	},
 	"file_history":
 	[
+		"/Users/vitalihatalski/Downloads/299.5a90a49d9d3fc4844a4fb93791854e5917b7948e.sql",
+		"/Users/vitalihatalski/visual-feature/github_objects.txt",
+		"/Users/vitalihatalski/visual-feature/model/usersRepository.js",
+		"/Users/vitalihatalski/visual-feature/signin.js",
+		"/Users/vitalihatalski/visual-feature/model/users.js",
+		"/Users/vitalihatalski/visual-feature/repositories/usersRepository.js",
+		"/Users/vitalihatalski/visual-feature/node_modules/redis/README.md",
 		"/Users/vitalihatalski/ServiceChannel.OAuth.Client/package.json",
 		"/Users/vitalihatalski/ServiceChannel.OAuth.Client/node_modules/mongodb/package.json",
 		"/Users/vitalihatalski/ServiceChannel.OAuth.Client/node_modules/mongodb/Readme.md",
@@ -87,7 +131,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -118,7 +162,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -127,15 +171,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5316,
+						"buffer_size": 4448,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								227,
-								227
+								2426,
+								2386
 							]
 						],
 						"settings":
@@ -145,7 +189,124 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2031.0,
+						"translation.y": 227.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "model/usersRepository.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 849,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "routes/routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1253,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								744,
+								744
+							]
+						],
+						"settings":
+						{
+							"auto_name": "routes.js",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "model/user.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 540,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								137,
+								141
+							]
+						],
+						"settings":
+						{
+							"auto_name": "user.js",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 883,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								759,
+								759
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -205,11 +366,15 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"selected_items":
 		[
+			[
+				"",
+				"~/ServiceChannel.OAuth.Client/sc-oauth-client.sublime-project"
+			]
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
