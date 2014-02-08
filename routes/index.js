@@ -6,7 +6,7 @@ var github = new GitHubApi({ version: "3.0.0", timeout: 5000 });
  */
 
 exports.index = function(req, res){
-    res.render('index', { title: 'Visual Feature' });
+    res.render('index', { title: 'Naviam' });
 };
 
 exports.dashboard = function(req, res) {
@@ -19,6 +19,7 @@ exports.dashboard = function(req, res) {
     github.user.get({}, function(err, usr) {
         github.user.getOrgs({}, function(err, orgs) {
             console.log(err);
+            console.log(orgs);
             res.render('dashboard', { title: 'Feature Way', user: usr, orgs: orgs });
         });
     });
