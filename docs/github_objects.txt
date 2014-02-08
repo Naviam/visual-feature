@@ -1,8 +1,4 @@
-
-
-organisations
-
-GOT RES? [ { login: 'servicechannel',
+{ login: 'servicechannel',
     id: 331906,
     url: 'https://api.github.com/orgs/servicechannel',
     repos_url: 'https://api.github.com/orgs/servicechannel/repos',
@@ -20,4 +16,4 @@ GOT RES? [ { login: 'servicechannel',
     avatar_url: 'https://identicons.github.com/1de852d9883907a3d1cc7b7e6cdf638f.png' },
   meta: { 'x-ratelimit-limit': '5000',
     'x-ratelimit-remaining': '4998',
-    'x-oauth-scopes': 'user, public_repo, repo, gist' } ]
+    'x-oauth-scopes': 'user, public_repo, repo, gist' }

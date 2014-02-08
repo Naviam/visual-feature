@@ -1,0 +1,64 @@
+{
+  "id": "GUID",
+  "email": "vhatalski@naviam.com",
+  "name": "Vitali Hatalski",
+  "role": "Admin",
+  "github": {
+    "id": 1,
+    "login": "hatalski",
+    "enterprise": false,
+    "enterprise-url": "http://github.servicechannel.com"
+  },
+  "createdOn": "Date",
+  "lastLogin": "Date"
+}
+
+{
+	"id": "GUID",
+	"name": "ServiceClick Project",
+	"description": "",
+	"environments": [
+		{
+			"name": "dev",
+			"description": "Development Environment"
+		},
+		{
+			"name": "qa",
+			"description": "Testing Environment"
+		}, 
+		{
+			"name": "staging",
+			"description": "Staging Environment"
+		},
+		{
+			"name": "sandbox1",
+			"description": "Sandbox 1 Environment - Short Testing"
+		},
+		{
+			"name": "sandbox2",
+			"description": "Sandbox 2 Environment - Long Testing"
+		},
+		{
+			"name": "production",
+			"description": "Production Environment"
+		}],
+	"createdOn": "Date"
+}
+
+{
+	"id": "GUID",
+	"name": "Account Name",
+	"github": [{
+			"id": 1,
+		    "login": "hatalski",
+		    "enterprise": false,
+		    "enterprise-url": "http://github.servicechannel.com"
+		},
+		{
+			"login": "servicechannel",
+  			"id": 331906,
+  			"url": "https://api.github.com/orgs/servicechannel",
+			}],
+	"users": ["GUID", "GUID", "GUID"],
+	"projects": ["GUID", "GUID", "GUID"]
+}
