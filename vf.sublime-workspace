@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"sto",
+				"storySchema"
+			],
+			[
+				"stage",
+				"stageSchema"
+			],
+			[
+				"int",
+				"integrationSchema"
+			],
+			[
+				"in",
+				"integrationSchema"
+			],
+			[
+				"pro",
+				"projectSchema"
+			],
+			[
+				"p",
+				"process"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"mon",
+				"mongoose"
+			],
+			[
+				"s",
+				"stylesheet"
+			],
+			[
+				"c",
+				"col-lg-5"
+			],
+			[
+				"aut",
+				"authenticate"
+			],
+			[
+				"po",
+				"post"
+			],
+			[
+				"b",
+				"button"
+			],
+			[
+				"bt",
+				"btn-default"
+			],
+			[
+				"inpu",
+				"input-group"
+			],
+			[
 				"cli",
 				"clientSecret"
 			],
@@ -35,44 +95,80 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 4448,
+				"buffer_size": 5550,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "model/usersRepository.js",
-			"settings":
-			{
-				"buffer_size": 849,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "routes/routes.js",
-			"settings":
-			{
-				"buffer_size": 1253,
-				"line_ending": "Unix",
-				"name": "routes.js"
-			}
-		},
-		{
-			"contents": "var mongoose = require('mongoose');\nvar Schema = mongoose.Schema;\n\nvar userSchema = new Schema({\n  email:  String,\n  password: String,\n  body:   String,\n  comments: [{ body: String, date: Date }],\n  date: { type: Date, default: Date.now },\n  hidden: Boolean,\n  meta: {\n    votes: Number,\n    favs:  Number\n  }\n});\n\nmongoose.connect('mongodb://localhost/test');\n\nvar User = mongoose.model('User', { name: String, github: String });\n\nvar u = new User({ name: 'Zildjian' });\nu.save(function (err) {\n  if (err) // ...\n  console.log('meow');\n});",
 			"file": "model/user.js",
-			"file_size": -1,
-			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 540,
-				"line_ending": "Unix",
-				"name": "user.js"
+				"buffer_size": 0,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "package.json",
+			"file": "model/project.js",
 			"settings":
 			{
-				"buffer_size": 883,
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "model/db.js",
+			"settings":
+			{
+				"buffer_size": 1459,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 5056,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/login.jade",
+			"settings":
+			{
+				"buffer_size": 485,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/css/login.css",
+			"settings":
+			{
+				"buffer_size": 148,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/marketing_layout.jade",
+			"settings":
+			{
+				"buffer_size": 681,
+				"line_ending": "Unix",
+				"name": "marketing_layout.jade"
+			}
+		},
+		{
+			"file": "public/css/site.css",
+			"settings":
+			{
+				"buffer_size": 192,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/index.jade",
+			"settings":
+			{
+				"buffer_size": 675,
 				"line_ending": "Unix"
 			}
 		}
@@ -104,6 +200,15 @@
 	},
 	"file_history":
 	[
+		"/Users/vitalihatalski/visual-feature/routes/project.js",
+		"/Users/vitalihatalski/visual-feature/package.json",
+		"/Users/vitalihatalski/visual-feature/README.md",
+		"/Users/vitalihatalski/visual-feature/model/user.js",
+		"/Users/vitalihatalski/visual-feature/routes/routes.js",
+		"/Users/vitalihatalski/visual-feature/public/css/login.css",
+		"/Users/vitalihatalski/visual-feature/views/dashboard.jade",
+		"/Users/vitalihatalski/visual-feature/views/layout.jade",
+		"/Users/vitalihatalski/visual-feature/routes/auth.js",
 		"/Users/vitalihatalski/Downloads/299.5a90a49d9d3fc4844a4fb93791854e5917b7948e.sql",
 		"/Users/vitalihatalski/visual-feature/github_objects.txt",
 		"/Users/vitalihatalski/visual-feature/model/usersRepository.js",
@@ -171,15 +276,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4448,
+						"buffer_size": 5550,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2426,
-								2386
+								92,
+								92
 							]
 						],
 						"settings":
@@ -189,19 +294,49 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 227.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "model/usersRepository.js",
-					"semi_transient": true,
+					"file": "model/user.js",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 849,
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "model/project.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -220,63 +355,32 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "routes/routes.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1253,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								744,
-								744
-							]
-						],
-						"settings":
-						{
-							"auto_name": "routes.js",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "model/user.js",
+					"file": "model/db.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 540,
+						"buffer_size": 1459,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								137,
-								141
+								825,
+								825
 							]
 						],
 						"settings":
 						{
-							"auto_name": "user.js",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 720.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -284,32 +388,174 @@
 				},
 				{
 					"buffer": 4,
-					"file": "package.json",
+					"file": "README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 883,
+						"buffer_size": 5056,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								759,
-								759
+								331,
+								331
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1613.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/login.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 485,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								147,
+								147
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/css/login.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 148,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								76,
+								76
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "views/marketing_layout.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 681,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								494,
+								494
+							]
+						],
+						"settings":
+						{
+							"auto_name": "marketing_layout.jade",
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "public/css/site.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 192,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								192,
+								192
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "views/index.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 675,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								84,
+								43
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
