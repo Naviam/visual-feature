@@ -1,5 +1,6 @@
 var http = require('http');
 var express = require('express');
+var db = require('./model/db');
 var AWS = require('aws-sdk');
 var DynamoDBStore = require('connect-dynamodb')(express);
 var passport = require('passport');
@@ -10,7 +11,7 @@ var path = require('path');
 var routes = require('./routes');
 var sns = require('./routes/sns');
 var utils = require('./utils/utils');
-//var sources = require('./utils/sources');
+// var sources = require('./utils/sources');
 var usersRepository = require('./model/usersRepository');
 var logentries = require('node-logentries');
 var log = logentries.logger({
@@ -18,10 +19,10 @@ var log = logentries.logger({
 });
 
 var app = express();
-//var io = socket.listen(app);
+// var io = socket.listen(app);
 
 // load amazon credentials
-//AWS.config.loadFromPath('./creds/amazon-credentials.json');
+// AWS.config.loadFromPath('./creds/amazon-credentials.json');
 
 // https://github.com/organizations/Naviam/settings/applications/60403
 var GITHUB_CLIENT_ID = process.env.githubClientId || "d24dfef0f98062c793f6";
@@ -55,7 +56,7 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
-var options = {	table: 'vf-sessions', AWSConfigPath: './creds/amazon-credentials.json' };
+var options = { table: 'vf-sessions', AWSConfigPath: './creds/amazon-credentials.json' };
 app.use(express.session({ store: new DynamoDBStore(options), secret: 'vf-sessions-848h7f744fsY7' }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -68,7 +69,7 @@ passport.use(new GitHubStrategy({
     scope: "user,repo",
     callbackURL: GITHUB_CALLBACK_URL
   },
-  function(accessToken, refreshToken, profile, done) {
+  function(accessToken, refreshToken, params, profile, done) {
     console.log('accessToken: ' + accessToken);
     console.log('refreshToken: ' + refreshToken);
     console.log('profile: ' + utils.toString(profile));
@@ -84,7 +85,7 @@ passport.use(new GitHubStrategy({
       console.log("received accessToken from github: " + accessToken);
       GLOBAL.GITHUB_ACCESS_TOKEN = accessToken;
       console.log("GLOBAL.GITHUB_ACCESS_TOKEN: " + GLOBAL.GITHUB_ACCESS_TOKEN);
-
+      console.log(params);
       return done(null, profile);
     });
     // User.findOrCreate({ githubId: profile.id }, function (err, user) {
@@ -97,15 +98,20 @@ passport.use(new GitHubStrategy({
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
+app.get('/login', function(req, res){
+  res.render('login', { title: 'Login - Naviam' });
+});
 app.get('/auth/github', passport.authenticate('github'));
+app.post('/auth/githubent', function(req, res) {
+  log.info("Github enterprise login with domain: " + req.body.domain);
+  passport.authenticate('github');
+});
 app.get('/auth/github/callback', 
   passport.authenticate('github', { failureRedirect: '/' }),
   function(req, res) {
-    // Successful authentication, redirect home.
     log.info("user has been successfully authenticated.");
     res.redirect('/dashboard');
-  });
+});
 app.get('/logout', function(req, res){
   req.logout();
   GLOBAL.GITHUB_ACCESS_TOKEN = null;
@@ -115,8 +121,8 @@ app.get('/', routes.index);
 app.get('/dashboard', ensureAuthenticated, routes.dashboard);
 app.get('/repositories/:org', routes.repositories);
 app.get('/stories/:owner/:repo', routes.stories);
-app.post('/sns', sns.sns);
 app.get('/clean', routes.clean);
+app.post('/sns', sns.sns);
 
 http.createServer(app).listen(app.get('port'), app.get('host'), function() {
   console.log('Express server listening on port ' + app.get('port'));
@@ -126,12 +132,12 @@ http.createServer(app).listen(app.get('port'), app.get('host'), function() {
 });
 
 // Simple route middleware to ensure user is authenticated.
-//   Use this route middleware on any resource that needs to be protected.  If
-//   the request is authenticated (typically via a persistent login session),
-//   the request will proceed.  Otherwise, the user will be redirected to the
-//   login page.
+// Use this route middleware on any resource that needs to be protected.  If
+// the request is authenticated (typically via a persistent login session),
+// the request will proceed.  Otherwise, the user will be redirected to the
+// login page.
 function ensureAuthenticated(req, res, next) {
     console.log("is authenticated: " + req.isAuthenticated());
     if (req.isAuthenticated()) { return next(); }
-    res.redirect('/')
+    res.redirect('/');
 }
