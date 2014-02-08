@@ -1,0 +1,19 @@
+// bst-* - bootstrap snipets
+
+extend marketing_layout
+block stylesheet
+	link(rel="stylesheet",href="/css/login.css")
+block content
+	div.masthead
+		h3.text-muted Naviam - Sign In
+	div.row
+		div.col-lg-3
+			a.btn.btn-success(href="/auth/github") Sign in via Github
+	div.row	
+		h4 or
+	form
+		div.col-lg-5
+			div.input-group
+				span.input-group-btn
+					button.btn.btn-success(type="button",action="/auth/githubent") Sign in via Github Enterprise
+				input.form-control(type="text", value="github.servicechannel.com")
