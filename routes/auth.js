@@ -10,13 +10,17 @@ module.exports = function (app, github, passport, database) {
 	app.set('GITHUB_CALLBACK_URL', process.env.githubCallbackUrl || "http://localhost:3000/auth/github/callback");
 
 	passport.serializeUser(function(user, done) {
-		console.log("user id: " + user.id);
+		console.log("serialize user id: " + user.id);
 		done(null, user.id);
 	});
 
 	passport.deserializeUser(function(id, done) {
+		console.log("entered deserializeUser method");
+		console.log("deserializeUser method params: id = " + id + " and done = "+ done);
 		User.findById(id, function (err, user) {
-			console.log("find error: " + err); 
+			console.log("deserialize found error: " + err);
+			console.log("deserialize found user: " + user);
+			console.log("deserialize user.id = " + user.id);
 			done(err, user);
 		});
 	});
@@ -34,29 +38,32 @@ module.exports = function (app, github, passport, database) {
 		console.log('profile: ' + profile);
 		console.log('done: ' + done);
 		// asynchronous verification, for effect...
-		process.nextTick(function () {  
-			// To keep the example simple, the user's GitHub profile is returned to
-			// represent the logged-in user.  In a typical application, you would want
-			// to associate the GitHub account with a user record in your database,
-			// and return that user instead.
-			var user = new User( {
-				email: profile._json.email,
-				name: profile.displayName,
-				login: profile.login,
-				lastLogin: Date.now(),
-				githubAccessToken: accessToken
+		process.nextTick(function () {
+			User.findOne({'github.id': profile.id }, function(err, user) {
+				if (user) {
+					console.log('User with github id = ' + profile.id + ' has been found.');
+				}
+				else {
+					console.log('User with github id = ' + profile.id + ' has NOT been found.');
+					user = new User({
+						email: profile._json.email,
+						name: profile.displayName,
+						github: {
+							id: profile.id,
+							login: profile.username,
+							accessToken: accessToken
+						},
+						lastLogin: Date.now()
+					});
+					user.save();
+				}
+				github.authenticate({
+					type: "oauth",
+					token: accessToken
+				});
+				return done(null, user);
 			});
-			user.save();
-			console.log("received accessToken from github: " + accessToken);
-			github.authenticate({
-				type: "oauth",
-				token: accessToken
-			});
-			return done(null, user);
 		});
-		// User.findOrCreate({ githubId: profile.id }, function (err, user) {
-		//   return done(err, user);
-		// });
 	}));
 
 	app.get('/logout', function(req, res){
@@ -68,9 +75,9 @@ module.exports = function (app, github, passport, database) {
 	passport.authenticate('github', { failureRedirect: '/' }),
 		function(req, res) {
 			// Successful authentication, redirect home.
-			console.log(req.user + " user has been successfully authenticated.");
-			req.session.loggedIn = true;
-			req.session.user = req.user;
+			console.log("User has been successfully authenticated.");
+			//req.session.loggedIn = true;
+			//req.session.user = req.user;
 			res.redirect('/1');
 		});
 };

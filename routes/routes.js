@@ -5,8 +5,37 @@ module.exports = function (app, github, passport, db) {
 
 	app.get('/', views.index);
 	app.get('/login', views.login);
+	app.get('/:account', function(req, res) {
+		var accountId = req.params.account;
+		console.log(accountId);
+		github.user.get({}, function(err, usr) {
+			console.log(usr);
+			github.user.getOrgs({}, function(err, orgs) {
+				console.log(err);
+				console.log(orgs);
+				res.render('dashboard', { title: 'Naviam | Dashboard', user: usr, orgs: orgs });
+			});
+		});
+	});
 
-	app.get('/:account', ensureAuthenticated, accounts.index);
+	app.get('/repositories/:org', function(req, res) {
+		// console.log("GOT RES?", orgs);
+		var orgName = req.params.org;
+		console.log("get repos for org: " + orgName);
+		github.repos.getFromOrg({org: orgName}, function (err, repos) {
+			console.log("get from org error: " + err);
+			res.json(repos);
+		});
+	});
+	app.get('/stories/:owner/:repo', function (req, res) {
+		var repoName = req.params.repo;
+		var owner = req.params.owner;
+		console.log("get stories for repo: " + repoName + " and owner: " + owner);
+		github.pullRequests.getAll({ user: owner, repo: repoName }, function (err, stories) {
+			console.log("get stories from repo error: " + err);
+			res.json(stories);
+		});
+	});
 
 	// app.namespace('/accounts', function() {
 	//	app.get('/', accounts.index);
@@ -16,8 +45,7 @@ module.exports = function (app, github, passport, db) {
 
 	//app.get('/', routes.index);
 	//app.get('/dashboard', ensureAuthenticated, routes.dashboard);
-	//app.get('/repositories/:org', routes.repositories);
-	//app.get('/stories/:owner/:repo', routes.stories);
+	
 	//app.get('/clean', routes.clean);
 	//app.post('/sns', sns.sns);
 
@@ -28,7 +56,7 @@ module.exports = function (app, github, passport, db) {
 	//   login page.
 	function ensureAuthenticated(req, res, next) {
 		debugger;
-		console.log("is authenticated: " + req.session);
+		console.log("is authenticated: " + req.user);
 		if (req.user) { return next(); }
 		res.redirect('/');
 	}
