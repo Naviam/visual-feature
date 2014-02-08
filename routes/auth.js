@@ -74,10 +74,11 @@ module.exports = function (app, github, passport, database) {
 	app.get('/auth/github/callback', 
 	passport.authenticate('github', { failureRedirect: '/' }),
 		function(req, res) {
-			// Successful authentication, redirect home.
+			debugger;
 			console.log("User has been successfully authenticated.");
-			//req.session.loggedIn = true;
-			//req.session.user = req.user;
-			res.redirect('/1');
+			req.session.regenerate(function(){
+				req.session.user = req.user;
+				res.redirect('/1');
+			});
 		});
 };

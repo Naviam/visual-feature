@@ -20,7 +20,7 @@ exports.dashboard = function(req, res) {
         github.user.getOrgs({}, function(err, orgs) {
             console.log(err);
             console.log(orgs);
-            res.render('dashboard', { title: 'Feature Way', user: usr, orgs: orgs });
+            res.render('dashboard', { title: 'Naviam | Manage Stories', user: usr, orgs: orgs });
         });
     });
 };

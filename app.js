@@ -20,9 +20,9 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser());
 var options = {
-	host: 'nodejitsudb6553126701.redis.irstack.com', 
-	port: '6379',
-	pass: 'nodejitsudb6553126701.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4'
+	host: '127.0.0.1',//'nodejitsudb6553126701.redis.irstack.com', 
+	port: '6379'//,
+	//pass: 'nodejitsudb6553126701.redis.irstack.com:f327cfe980c971946e80b8e975fbebb4'
 };
 app.use(express.session({ store: new RedisStore(options), secret: 'naviam-848h7f744fsY7' }));
 app.use(passport.initialize());

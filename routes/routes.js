@@ -5,7 +5,7 @@ module.exports = function (app, github, passport, db) {
 
 	app.get('/', views.index);
 	app.get('/login', views.login);
-	app.get('/:account', function(req, res) {
+	app.get('/:account', ensureAuthenticated, function(req, res) {
 		var accountId = req.params.account;
 		console.log(accountId);
 		github.user.get({}, function(err, usr) {
@@ -18,7 +18,7 @@ module.exports = function (app, github, passport, db) {
 		});
 	});
 
-	app.get('/repositories/:org', function(req, res) {
+	app.get('/repositories/:org', ensureAuthenticated, function(req, res) {
 		// console.log("GOT RES?", orgs);
 		var orgName = req.params.org;
 		console.log("get repos for org: " + orgName);
@@ -27,7 +27,7 @@ module.exports = function (app, github, passport, db) {
 			res.json(repos);
 		});
 	});
-	app.get('/stories/:owner/:repo', function (req, res) {
+	app.get('/stories/:owner/:repo', ensureAuthenticated, function (req, res) {
 		var repoName = req.params.repo;
 		var owner = req.params.owner;
 		console.log("get stories for repo: " + repoName + " and owner: " + owner);
@@ -55,9 +55,7 @@ module.exports = function (app, github, passport, db) {
 	//   the request will proceed.  Otherwise, the user will be redirected to the
 	//   login page.
 	function ensureAuthenticated(req, res, next) {
-		debugger;
-		console.log("is authenticated: " + req.user);
-		if (req.user) { return next(); }
+		if (req.session.user) { return next(); }
 		res.redirect('/');
 	}
 };
