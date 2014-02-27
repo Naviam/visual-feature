@@ -1,6 +1,6 @@
 module.exports = function (app, github, passport, database) {
 	var mongoose = require('mongoose');
-	var userModel = require('../model/user');
+	var schema = require('../model/schema');
 	var GitHubStrategy = require('passport-github').Strategy;
 
 	var User = mongoose.model('User');
@@ -58,9 +58,15 @@ module.exports = function (app, github, passport, database) {
 					user.save();
 				}
 				github.authenticate({
-					type: "oauth",
-					token: accessToken
+					type: 'oauth',
+					token: accessToken // '8eedbd1d8d4ed79d2c08c877e7004ef7a9f56bd3'
 				});
+				console.log('call github.authenticate');
+				// github.authenticate({
+				// 	type: 'basic',
+				// 	username: 'vhatalski',
+				// 	password: 'UuWi7tJY'
+				// });
 				return done(null, user);
 			});
 		});
@@ -78,7 +84,7 @@ module.exports = function (app, github, passport, database) {
 			console.log("User has been successfully authenticated.");
 			req.session.regenerate(function(){
 				req.session.user = req.user;
-				res.redirect('/1');
+				res.redirect('/accounts/create');
 			});
 		});
 };
