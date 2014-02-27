@@ -1,7 +1,13 @@
 visual-feature
 ==============
 
+// servicechannel github enterprise
 export PORT=3000
+export githubClientId=ff8f47333741843bf5f9
+export githubSecretKey=43fffed62814d610c32ea881edfbfbadf26880d5
+
+export githubClientId=d24dfef0f98062c793f6
+export githubSecretKey=e5fe11d7e985757ebf8af9d48392b8f8077d1fb9
 
 Users
 - email: String
