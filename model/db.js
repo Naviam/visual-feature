@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 //var user = require('./model/user');
 
-var dbUri = 'mongodb://localhost/test';
+var dbUri = 'mongodb://localhost/naviam';
 mongoose.connect(dbUri);
 
 mongoose.connection.on('connected', function() {
