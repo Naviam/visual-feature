@@ -1,22 +1,11 @@
 module.exports = function (app, github, passport, db) {
 	var auth = require('./auth')(app, github, passport, db);
 	var views = require('./views');
-	var accounts = require('./accounts');
+	var accounts = require('./accounts')(app, github, passport, db);
 
 	app.get('/', views.index);
 	app.get('/login', views.login);
-	app.get('/:account', ensureAuthenticated, function(req, res) {
-		var accountId = req.params.account;
-		console.log(accountId);
-		github.user.get({}, function(err, usr) {
-			console.log(usr);
-			github.user.getOrgs({}, function(err, orgs) {
-				console.log(err);
-				console.log(orgs);
-				res.render('dashboard', { title: 'Naviam | Dashboard', user: usr, orgs: orgs });
-			});
-		});
-	});
+	
 
 	app.get('/repositories/:org', ensureAuthenticated, function(req, res) {
 		// console.log("GOT RES?", orgs);
