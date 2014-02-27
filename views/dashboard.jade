@@ -8,7 +8,7 @@ block navigation
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href="#") Visual Feature
+                a.navbar-brand(href="#") Naviam
             div.navbar-collapse.collapse
                 ul.nav.navbar-nav
                     li.dropdown
@@ -120,7 +120,7 @@ block content
                         li
                             a(data-bind="text: name, click: $root.setCurrentRepository, attr: { href: url, title: name }")
 block scripts
-    script(src='js/models/AppViewModel.js')
+    script(src='../js/models/AppViewModel.js')
     script.
         $(function() {
             var user = !{JSON.stringify(user)};
