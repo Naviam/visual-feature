@@ -31,3 +31,38 @@ var userSchema = new mongoose.Schema({
 });
 
 mongoose.model('User', userSchema);
+
+var commitSchema = new mongoose.Schema({
+	id: String
+});
+
+var projectSchema = new mongoose.Schema({
+	name: String,
+	commits: [commitSchema]
+});
+
+// var storySchema = new mongoose.Schema({
+//	title: String,
+//	description: String,
+//	status: String,
+//	labels: [String],
+//	createdOn: Date,
+//	createdBy: String,
+//	requester: String,
+//	assignee: String,
+//	comments: [String]
+// });
+
+// var stageSchema = new mongoose.Schema({
+//	name: String,
+//	stories: [storySchema]
+// });
+
+// mongoose.model('Stage', stageSchema);
+
+// var projectSchema = new mongoose.Schema({
+//	name: String,
+//	stages: [stageSchema]
+// });
+
+// mongoose.model('Project', projectSchema);

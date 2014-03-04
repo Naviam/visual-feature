@@ -41,6 +41,8 @@ module.exports = function (app, github, passport, database) {
 		process.nextTick(function () {
 			User.findOne({'github.id': profile.id }, function(err, user) {
 				if (user) {
+					user.lastLogin = Date.now();
+					user.save();
 					console.log('User with github id = ' + profile.id + ' has been found.');
 				}
 				else {
@@ -63,9 +65,9 @@ module.exports = function (app, github, passport, database) {
 				});
 				console.log('call github.authenticate');
 				// github.authenticate({
-				// 	type: 'basic',
-				// 	username: 'vhatalski',
-				// 	password: 'UuWi7tJY'
+				//	type: 'basic',
+				//	username: 'vhatalski',
+				//	password: 'UuWi7tJY'
 				// });
 				return done(null, user);
 			});
