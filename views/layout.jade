@@ -1,21 +1,18 @@
 doctype 5
 html(lang="en", ng-app)
     head
-        title Naviam
+        title=title
         meta(charset="utf-8")
-        meta(name="description",content="Naviam")
+        meta(name="description",content="Naviam | Release Manager")
         meta(name="author",content="Naviam, Inc.")
         meta(name="viewport",content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet",href="/css/bootstrap.min.css")
         link(rel="stylesheet",href="/css/bootstrap-theme.min.css")
+        block stylesheet
         link(rel="stylesheet",href="/css/site.css")
     body
         block navigation
-        div.container
-            block content
+        block content
         script(src='/js/jquery.min.js')
         script(src='/js/bootstrap.min.js')
-        script(src='/js/socket.io.js')
-        script(src='/js/knockout-2.3.0.js')
-        script(src='/js/knockout.mapping-latest.js')
         block scripts

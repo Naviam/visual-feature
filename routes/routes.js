@@ -4,8 +4,7 @@ module.exports = function (app, github, passport, db) {
 	var accounts = require('./accounts')(app, github, passport, db);
 
 	app.get('/', views.index);
-	app.get('/login', views.login);
-	
+	app.get('/auth/enterprise', views.login);
 
 	app.get('/repositories/:org', ensureAuthenticated, function(req, res) {
 		// console.log("GOT RES?", orgs);

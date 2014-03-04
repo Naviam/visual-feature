@@ -14,7 +14,7 @@ module.exports = function (app, github, passport, database) {
             github.user.getOrgs({}, function(err, orgs) {
                 console.log(err);
                 console.log(orgs);
-                res.render('dashboard', { title: 'Naviam | Dashboard', user: usr, orgs: orgs });
+                res.render('dashboard_new', { title: 'Naviam | Dashboard', user: usr, orgs: orgs });
             });
         });
     });
