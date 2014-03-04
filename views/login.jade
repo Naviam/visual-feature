@@ -1,0 +1,23 @@
+// bst-* - bootstrap snipets
+
+extend layout
+
+block stylesheet
+	link(rel="stylesheet",href="/css/login.css")
+
+block content
+	.container
+		form.form-signin(role="form")
+			h2.form-signin-heading GitHub Enterprise
+			//- .form-group
+			label.sr-only(for="domain") Domain
+			input.form-control(id="domain", placeholder="Domain")
+			//- .form-group
+			label.sr-only(for="username") Username
+			input.form-control(id="username", type="text", placeholder="Username")
+			//- .form-group
+			label.sr-only(for="password") Password
+			input.form-control(id="password", type="password", placeholder="Password")
+			a.btn.btn-primary.btn-block.btn-lg(href='/auth/githubent') Login
+	.footer
+		p &copy; Naviam, Inc. 2014
