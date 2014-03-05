@@ -25,7 +25,11 @@ var userSchema = new mongoose.Schema({
 	github: {
 		id: { type: Number, index: true },
 		login: String,
-		accessToken: String
+		accessToken: String,
+		enterprise: {
+			username: { type: String, index: true },
+			password: String
+		}
 	},
 	accounts: [accountSchema]
 });

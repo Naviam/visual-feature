@@ -13,8 +13,9 @@ function findLinksInString(str) {
     return str.match(geturl) || "";
 }
 
-function organization(org) {
+function organization(org, parent) {
     var self = this;
+    self.parent = parent;
     self.login = org.login;
     self.isCollapsed = ko.observable(false);
 
@@ -25,12 +26,13 @@ function organization(org) {
     };
 
     self.getRepositories = function (org) {
-        $.getJSON("/repositories/" + org, function(data) {
+    	var prefix = window.enterprise ? '/gitent' : '';
+        $.getJSON(prefix + "/repositories/" + org, function(data) {
             self.repositories(data);
             
             var found = jQuery.grep(self.repositories(), function(r) {
                 // TODO: replace hardcoded name with user session variable
-                return r.name == "VisualFeature";
+                return r.name == "ServiceClick";
             });
             if (found.length == 1) {
                 window.viewmodel.setCurrentRepository(found[0]);
@@ -74,14 +76,15 @@ function story(story) {
     });
 }
 
-function repository(repo) {
+function repository(repo, parent) {
     var self = this;
     self.name = ko.observable(repo.name);
     self.owner = ko.observable(repo.owner.login);
     self.stories = ko.observableArray();
 
     self.getCompletedStories = function (ownerName, repoName) {
-        $.getJSON("/stories/" + ownerName + "/" + repoName, function(data) {
+    	var prefix = window.enterprise ? '/gitent' : '';
+        $.getJSON(prefix + "/stories/" + ownerName + "/" + repoName, function(data) {
             self.stories.removeAll();
             $.each(data, function (index, value) {
                 self.stories.unshift(new story(value));
@@ -96,10 +99,11 @@ function AppViewModel(model) {
     var self = this;
 
     self.user = ko.observable(model.user);
+    window.enterprise = model.user.site_admin;
     self.currentRepository = ko.observable();
     self.organizations = ko.observableArray();
     for (var org in model.orgs) {
-        self.organizations.unshift(new organization(model.orgs[org]));
+        self.organizations.unshift(new organization(model.orgs[org], self));
     }
 
     self.setCurrentRepository = function (repo) {

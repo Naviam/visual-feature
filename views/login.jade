@@ -7,17 +7,17 @@ block stylesheet
 
 block content
 	.container
-		form.form-signin(role="form")
+		form.form-signin(role="form",action="/gitent/login",method="post")
 			h2.form-signin-heading GitHub Enterprise
 			//- .form-group
 			label.sr-only(for="domain") Domain
-			input.form-control(id="domain", placeholder="Domain")
+			input.form-control(id="domain", name="domain", placeholder="Domain", value="github.servicechannel.com")
 			//- .form-group
 			label.sr-only(for="username") Username
-			input.form-control(id="username", type="text", placeholder="Username")
+			input.form-control(id="username", name="username", type="text", placeholder="Username", value="vhatalski")
 			//- .form-group
 			label.sr-only(for="password") Password
-			input.form-control(id="password", type="password", placeholder="Password")
-			a.btn.btn-primary.btn-block.btn-lg(href='/auth/githubent') Login
+			input.form-control(id="password", name="password", type="password", placeholder="Password", value="12iBYLzcPR2Ug")
+			button.btn.btn-primary.btn-block.btn-lg(type='submit') Login
 	.footer
 		p &copy; Naviam, Inc. 2014

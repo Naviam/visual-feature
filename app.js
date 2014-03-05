@@ -1,22 +1,11 @@
 var http = require('http');
 var express = require('express');
-var db = require('./model/db');
 var resources = require('express-resource');
 var namespace = require('express-namespace');
 var path = require('path');
 var passport = require('passport');
 //var RedisStore = require('connect-redis')(express);
 var MongoStore = require('connect-mongo')(express);
-var GitHubApi = require("github");
-var github = new GitHubApi(
-{
-	version: "3.0.0", 
-	timeout: 5000//, 
-	// schema: 'http',
-	// host: 'github.servicechannel.com/api/v3',
-	// port: 80,
-	// debug: true
-});
 
 var app = express();
 app.set('host', process.env.IP || "127.0.0.1");
@@ -42,7 +31,7 @@ app.use(express.session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
-var routes = require('./routes/routes')(app, github, passport, db);
+var routes = require('./routes/routes')(app, passport);
 app.use(express.static(path.join(__dirname, 'public')));
 
 http.createServer(app).listen(app.get('port'), app.get('host'), function() {

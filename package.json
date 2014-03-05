@@ -19,6 +19,7 @@
     "passport": "~0.1.17",
     "passport-github": "~0.1.5",
     "passport-oauth": "~1.0.0",
+    "passport-local": "~0.1.6",
     "pivotal": "~0.2.0",
     "socket.io": "~0.9.16",
     "socket.io-client": "~0.9.16",
