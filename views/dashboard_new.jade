@@ -36,7 +36,7 @@ block content
     div.container-fluid
         .row(data-bind="with: currentRepository")
             .col-sm-3.col-md-2.sidebar
-                h4.page-header(style="margin-top:20px") Environments
+                h4.page-header(style="margin-top:20px") ServiceClick
                 ul.nav.nav-sidebar
                     li.active
                         a(href="#") Development
@@ -62,11 +62,12 @@ block content
                         li
                             a(data-bind="text: name, click: $root.setCurrentRepository, attr: { href: url, title: name }")
             .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-                h4.page-header ServiceClick | Development
-                form.navbar-form.navbar-right(role="search")
-                    .form-group
-                        input.form-control(type="text", placeholder="Search stories")
-                    button.btn.btn-default(type="submit") Submit
+                // h4.page-header ServiceClick
+                form.navbar-form(role="search")
+                    .input-group
+                        input.form-control(type="text", placeholder="Search")
+                        span.input-group-btn
+                            button.btn.btn-default(type="submit") Go!
                 .table-responsive
                     table.table.table-striped
                         tbody
