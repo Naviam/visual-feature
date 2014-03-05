@@ -47,13 +47,20 @@ function story(story) {
     self.title = ko.observable(story.title);
     self.number = ko.observable(story.number);
     self.body = ko.observable(story.body);
+    self.ref = ko.observable(story.head.ref);
+    self.sha = ko.observable(story.head.sha);
     self.normalizedBody = ko.observable();
     self.html_url = ko.observable(story.html_url);
 
+    self.text = ko.computed(function() {
+    	var text = self.title() + " " + self.body();
+    	return text.replace("... ...", "");
+    });
+
     self.links = ko.computed(function () {
-        var links = findLinksInString(self.body());
+        var links = findLinksInString(self.text());
         // TODO: remove links from description
-        self.normalizedBody(self.body());
+        self.normalizedBody(self.text());
         for (var i in links) {
             self.normalizedBody(self.normalizedBody().replace(links[i], ""));
         }

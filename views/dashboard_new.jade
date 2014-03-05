@@ -78,15 +78,18 @@ block content
                                         a(data-bind="attr: {href: html_url, title: title}",target="_blank")
                                             span(data-bind="text: number") 
                                             | : 
-                                            span(data-bind="text: title")
+                                            span(data-bind="text: normalizedBody")
                                 td
-                                    p(data-bind="visible: storyLinks().length > 0")
+                                    p(data-bind="visible: storyLinks().length > 0", style="margin-bottom: 0px")
                                         <!-- ko foreach: storyLinks -->
                                         a(data-bind="attr: { href: url, title: title }", target="_blank")
                                             span.label.label-primary(data-bind="text: text")
+                                        br
                                         <!-- /ko -->
                                 td
-                                    em(data-bind="text: normalizedBody")
+                                    em(data-bind="text: ref")
+                                    br
+                                    em(data-bind="text: sha")
                             <!-- /ko -->
 block scripts
     script(src='/js/socket.io.js')
