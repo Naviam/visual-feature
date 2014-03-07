@@ -37,21 +37,12 @@ block content
         .row(data-bind="with: currentRepository")
             .col-sm-3.col-md-2.sidebar
                 h4.page-header(style="margin-top:20px") ServiceClick
-                ul.nav.nav-sidebar
-                    li.active
-                        a(href="#") Development
+                ul.nav.nav-sidebar(data-bind="foreach: environments")
                     li
-                        a(href="#") QA1
-                    li
-                        a(href="#") QA2
-                    li
-                        a(href="#") STAGING
-                    li
-                        a(href="#") Sandbox1
-                    li
-                        a(href="#") Sandbox2
-                    li
-                        a(href="#") Production
+                        a(href="#")
+                            //span.badge(data-bind="text: count")
+                            span.label.pull-right(data-bind="text: branchname, css: css")
+                            span(data-bind="text: fullname")
                 ul.nav.nav-sidebar(data-bind="foreach: $root.organizations")
                     li
                         a.accordion-toggle(data-bind="click: toggleCollapse, attr: { href: '#' + login }",data-toggle="collapse",data-parent="#accordion")
@@ -74,7 +65,9 @@ block content
                             <!-- ko foreach: stories -->
                             tr
                                 td
-                                    h5.css-truncate-target.text-primary
+                                    span.label.label-primary(data-bind="text: environment")
+                                td
+                                    h5.css-truncate-target.text-primary(style="margin-top: 0px")
                                         a(data-bind="attr: {href: html_url, title: title}",target="_blank")
                                             span(data-bind="text: number") 
                                             | : 

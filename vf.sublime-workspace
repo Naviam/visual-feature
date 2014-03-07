@@ -4,6 +4,138 @@
 		"selected_items":
 		[
 			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"labe",
+				"label-primary"
+			],
+			[
+				"rep",
+				"repoName"
+			],
+			[
+				"co",
+				"compareResult"
+			],
+			[
+				"o",
+				"observableArray"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"br",
+				"branchname"
+			],
+			[
+				"own",
+				"ownerName"
+			],
+			[
+				"git",
+				"githubEnterprise"
+			],
+			[
+				"u",
+				"user"
+			],
+			[
+				"lab",
+				"label-primary"
+			],
+			[
+				"obse",
+				"observableArray"
+			],
+			[
+				"for",
+				"foreach"
+			],
+			[
+				"en",
+				"environments"
+			],
+			[
+				"fu",
+				"fullname"
+			],
+			[
+				"ti",
+				"title"
+			],
+			[
+				"p",
+				"parent"
+			],
+			[
+				"do",
+				"domain"
+			],
+			[
+				"r",
+				"req"
+			],
+			[
+				"e",
+				"ensureAuthenticated"
+			],
+			[
+				"in",
+				"input-group-btn"
+			],
+			[
+				"pa",
+				"padding-bottom"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"sub",
+				"sub-header"
+			],
+			[
+				"na",
+				"nav-tabs"
+			],
+			[
+				"St",
+				"STAGING"
+			],
+			[
+				"Q",
+				"QA2"
+			],
+			[
+				"btn",
+				"btn-lg"
+			],
+			[
+				"c",
+				"col-lg-3"
+			],
+			[
+				"input-sm",
+				"input-group-sm"
+			],
+			[
+				"user",
+				"username"
+			],
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"t",
+				"type"
+			],
+			[
 				"mo",
 				"mongoose"
 			],
@@ -32,16 +164,8 @@
 				"fun	Function"
 			],
 			[
-				"o",
-				"organizationSchema"
-			],
-			[
 				"S",
 				"String"
-			],
-			[
-				"pa",
-				"params"
 			],
 			[
 				"id",
@@ -52,28 +176,12 @@
 				"findOrCreate"
 			],
 			[
-				"user",
-				"user"
-			],
-			[
 				"req",
 				"require"
 			],
 			[
 				"pro",
 				"profile"
-			],
-			[
-				"res",
-				"resource"
-			],
-			[
-				"p",
-				"passport"
-			],
-			[
-				"r",
-				"routes"
 			],
 			[
 				"de",
@@ -100,10 +208,6 @@
 				"integrationSchema"
 			],
 			[
-				"in",
-				"integrationSchema"
-			],
-			[
 				"con",
 				"console"
 			],
@@ -114,10 +218,6 @@
 			[
 				"s",
 				"stylesheet"
-			],
-			[
-				"c",
-				"col-lg-5"
 			],
 			[
 				"aut",
@@ -154,10 +254,6 @@
 			[
 				"fun",
 				"function"
-			],
-			[
-				"e",
-				"exports"
 			]
 		]
 	},
@@ -167,43 +263,7 @@
 			"file": "app.js",
 			"settings":
 			{
-				"buffer_size": 1728,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "routes/auth.js",
-			"settings":
-			{
-				"buffer_size": 2984,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "var mongoose = require('mongoose');\n\nvar organizationSchema = new mongoose.Schema({\n	id: { type: Number, index: true },\n	name: String\n});\n\nvar accountSchema = new mongoose.Schema({\n	name: String,\n	createdOn: { type: Date, default: Date.now },\n	createdBy: String,\n	github: {\n		organizations: [organizationSchema]\n	}\n});\n\nmongoose.model('Account', accountSchema);\n\nvar userSchema = new mongoose.Schema({\n	email: { type: String, index: true },\n	name: String,\n	password: String,\n	createdOn: { type: Date, default: Date.now },\n	lastLogin: Date,\n	github: {\n		id: { type: Number, index: true },\n		login: String,\n		accessToken: String\n	},\n	accounts: [accountSchema]\n});\n\nmongoose.model('User', userSchema);\n\nvar commitSchema = new mongoose.Schema({\n	id: String\n});\n\nvar projectSchema = new mongoose.Schema({\n	name: String,\n	commits: [commitSchema]\n});",
-			"file": "model/schema.js",
-			"file_size": 746,
-			"file_write_time": 130381954380000000,
-			"settings":
-			{
-				"buffer_size": 843,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "[Step 13/24] Starting: C:\\BuildAgent\\temp\\agentTmp\\custom_script8953023491536768136.cmd\n[07:30:04][Step 13/24] in directory: C:\\BuildAgent\\work\\79801e710d1e3cf3\n[07:30:05][Step 13/24] \n[07:30:05][Step 13/24] C:\\BuildAgent\\work\\79801e710d1e3cf3>\"C:\\Program Files\\IIS\\Microsoft Web Deploy V2\\msdeploy.exe\"  -source:package='ServiceChannel.UI.Admin.Web\\obj\\Deploy-Sandbox1\\Package\\ServiceChannel.UI.Admin.Web.csproj.zip' -dest:auto,computerName='https://10.2.52.100:8172/MsDeploy.axd',userName='Administrator',password='sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParamFile:\"ServiceChannel.UI.Admin.Web\\obj\\Deploy-Sandbox1\\Package\\ServiceChannel.UI.Admin.Web.csproj.SetParameters.xml\" -allowUntrusted -skip:objectName=dirPath,absolutePath=logs \n[07:30:07][Step 13/24] Error: The verb must be specified by using the -verb argument.\n[07:30:07][Step 13/24] Error count: 1.\n[07:30:07][Step 13/24] Process exited with code -1\n\n-source:package='%env.ProjectNameAdmin%\\obj\\%env.Configuration%\\Package\\%env.ProjectNameAdmin%.csproj.zip' -dest:auto,computerName='%env.DeployWebServer%',userName='%env.DeployUserName%',password='%env.DeployPassword%',authtype='Basic',includeAcls='False' -verb:sync -disableLink:AppPoolExtension -disableLink:ContentExtension -disableLink:CertificateExtension -setParamFile:\"%env.ProjectNameAdmin%\\obj\\%env.Configuration%\\Package\\%env.ProjectNameAdmin%.csproj.SetParameters.xml\" -allowUntrusted -skip:objectName=dirPath,absolutePath=logs",
-			"settings":
-			{
-				"buffer_size": 1516,
-				"line_ending": "Unix",
-				"name": "[Step 13/24] Starting: C:\\BuildAgent\\temp\\agentTmp"
-			}
-		},
-		{
-			"file": "model/db.js",
-			"settings":
-			{
-				"buffer_size": 1142,
+				"buffer_size": 1480,
 				"line_ending": "Unix"
 			}
 		},
@@ -211,15 +271,55 @@
 			"file": "routes/routes.js",
 			"settings":
 			{
-				"buffer_size": 1726,
+				"buffer_size": 5797,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "routes/accounts.js",
+			"file": "public/js/models/AppViewModel.js",
 			"settings":
 			{
-				"buffer_size": 1712,
+				"buffer_size": 5851,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/dashboard_new.jade",
+			"settings":
+			{
+				"buffer_size": 5245,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "model/schema.js",
+			"settings":
+			{
+				"buffer_size": 1445,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/layout.jade",
+			"settings":
+			{
+				"buffer_size": 655,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/login.jade",
+			"settings":
+			{
+				"buffer_size": 863,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/index.jade",
+			"settings":
+			{
+				"buffer_size": 920,
 				"line_ending": "Unix"
 			}
 		}
@@ -330,7 +430,20 @@
 	},
 	"file_history":
 	[
+		"/Users/vitalihatalski/visual-feature/routes/accounts.js",
+		"/Users/vitalihatalski/visual-feature/public/css/site.css",
+		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/pullRequests.js",
 		"/Users/vitalihatalski/visual-feature/routes/auth.js",
+		"/Users/vitalihatalski/visual-feature/app_old.js",
+		"/Users/vitalihatalski/visual-feature/node_modules/github/index.js",
+		"/Users/vitalihatalski/visual-feature/public/css/dashboard.css",
+		"/Users/vitalihatalski/visual-feature/views/dashboard_new.jade",
+		"/Users/vitalihatalski/visual-feature/node_modules/github/error.js",
+		"/Users/vitalihatalski/visual-feature/package.json",
+		"/Users/vitalihatalski/visual-feature/views/dashboard.jade",
+		"/Users/vitalihatalski/visual-feature/views/marketing_layout.jade",
+		"/Users/vitalihatalski/visual-feature/public/css/login.css",
+		"/Users/vitalihatalski/visual-feature/model/db.js",
 		"/Users/vitalihatalski/visual-feature/model/schema.js",
 		"/Users/vitalihatalski/visual-feature/README.md",
 		"/Users/vitalihatalski/visual-feature/docs/json-objects.json",
@@ -339,17 +452,12 @@
 		"/Users/vitalihatalski/visual-feature/views/index.jade",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/user.js",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/userTest.js",
-		"/Users/vitalihatalski/visual-feature/node_modules/github/index.js",
 		"/Users/vitalihatalski/visual-feature/node_modules/zombie/node_modules/request/node_modules/hawk/node_modules/sntp/test/index.js",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/routes.json",
 		"/Users/vitalihatalski/visual-feature/routes/views.js",
-		"/Users/vitalihatalski/visual-feature/views/dashboard.jade",
-		"/Users/vitalihatalski/visual-feature/package.json",
 		"/Users/vitalihatalski/visual-feature/views/layout.jade",
-		"/Users/vitalihatalski/visual-feature/app_old.js",
 		"/Users/vitalihatalski/visual-feature/model/account.js",
 		"/Users/vitalihatalski/visual-feature/docs/github-profile.json",
-		"/Users/vitalihatalski/visual-feature/model/db.js",
 		"/Users/vitalihatalski/visual-feature/docs/github-auth-object.json",
 		"/Users/vitalihatalski/visual-feature/docs/request-object.txt",
 		"/Users/vitalihatalski/visual-feature/routes/index.js",
@@ -361,9 +469,6 @@
 		"/Users/vitalihatalski/Library/Application Support/Sublime Text 3/Packages/User/RESTer.sublime-settings",
 		"/Users/vitalihatalski/Library/Application Support/Sublime Text 3/Packages/Nodejs/Nodejs.sublime-settings",
 		"/Users/vitalihatalski/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
-		"/Users/vitalihatalski/visual-feature/public/css/site.css",
-		"/Users/vitalihatalski/visual-feature/views/marketing_layout.jade",
-		"/Users/vitalihatalski/visual-feature/public/css/login.css",
 		"/Users/vitalihatalski/Library/Application Support/Sublime Text 3/Packages/MacTerminal/Default.sublime-keymap",
 		"/Users/vitalihatalski/visual-feature/model/project.js",
 		"/Users/vitalihatalski/visual-feature/model/user.js",
@@ -412,6 +517,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"0px",
+			"SSL routines",
+			"db",
 			"getaddrinfo",
 			"getaddrinfo ENOTFOUND",
 			"Visual Feature",
@@ -434,7 +542,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -443,15 +551,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1728,
+						"buffer_size": 1480,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								419,
-								419
+								147,
+								147
 							]
 						],
 						"settings":
@@ -469,13 +577,17 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 345.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
@@ -483,19 +595,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "routes/auth.js",
+					"file": "routes/routes.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2984,
+						"buffer_size": 5797,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2798,
-								2798
+								5128,
+								5128
 							]
 						],
 						"settings":
@@ -509,41 +621,9 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1105.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "model/schema.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 843,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								814,
-								814
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
+								},
 								{
-									"characters": "<",
+									"characters": ".#",
 									"selector": "text.html"
 								},
 								{
@@ -552,101 +632,87 @@
 								}
 							],
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 155.0,
+						"translation.y": 2731.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
+					"file": "public/js/models/AppViewModel.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1516,
+						"buffer_size": 5851,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1516,
-								1516
+								2597,
+								2597
 							]
 						],
 						"settings":
 						{
-							"auto_name": "[Step 13/24] Starting: C:\\BuildAgent\\temp\\agentTmp",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2242.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "model/db.js",
+					"buffer": 3,
+					"file": "views/dashboard_new.jade",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1142,
+						"buffer_size": 5245,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								114,
-								114
+								3657,
+								3657
 							]
 						],
 						"settings":
 						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1084.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "routes/routes.js",
+					"buffer": 4,
+					"file": "model/schema.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1726,
+						"buffer_size": 1445,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1000,
-								1000
+								742,
+								742
 							]
 						],
 						"settings":
@@ -670,27 +736,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 307.0,
+						"translation.y": 67.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "routes/accounts.js",
+					"buffer": 5,
+					"file": "views/layout.jade",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1712,
+						"buffer_size": 655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								61,
-								61
+								528,
+								528
 							]
 						],
 						"settings":
@@ -704,13 +770,9 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
 								}
 							],
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
@@ -719,6 +781,87 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "views/login.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 863,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								409,
+								409
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "views/index.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 920,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								526,
+								526
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
 					"type": "text"
 				}
 			]

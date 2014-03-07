@@ -16,7 +16,7 @@ module.exports = function (app, passport) {
 		timeout: 5000, 
 		schema: 'http',
 		port: 80,
-		debug: true
+		debug: false
 	});
 	var auth = require('./auth')(app, github, passport, db);
 	var views = require('./views');
@@ -76,18 +76,25 @@ module.exports = function (app, passport) {
 						username: username,
 						password: password
 					});
-					console.log('before user get');
-					githubEnterprise.user.get({}, function(err, usr) {
-			            console.log('I am here!');
-			            console.log(usr);
-			            githubEnterprise.user.getOrgs({}, function(err, orgs) {
-			                console.log(err);
-			                console.log(orgs);
-			                //res.send('Hooray!');
-			                res.render('dashboard_new', { title: 'Naviam | Dashboard', user: usr, orgs: orgs });
-			            });
-			        });
+			        res.redirect('/gitent/dashboard');
 				}
+			});
+		});
+		app.get('/dashboard', function(req, res) {
+			console.log('loading dashboard page with github enterprise');
+			githubEnterprise.user.get({}, function(err, usr) {
+                console.log(err);
+			    console.log(usr);
+			    githubEnterprise.user.getOrgs({}, function(err, orgs) {
+			        console.log(err);
+			        console.log(orgs);
+                    res.render('dashboard_new', 
+                        {
+                            title: 'Naviam | Dashboard',
+                            user: usr, 
+                            orgs: orgs
+                        });
+			    });
 			});
 		});
 		app.get('/repositories/:org', function(req, res) {
@@ -98,15 +105,60 @@ module.exports = function (app, passport) {
 				res.json(repos);
 			});
 		});
+        app.get('user/:owner/repo/:repo/branch/:branch', function(req, res) {
+            var repoName = req.params.repo;
+            var branch = req.params.branch;
+            var owner = req.params.owner;
+            var self = this;
+            self.currentLink = '';
+            //while (githubEnterprise.hasNextPage(self.currentLink))
+            githubEnterprise.repos.getCommits(
+            {
+                user: owner,
+                repo: repoName,
+                sha: branch,
+                per_page: 100
+            },
+            function(err, result) {
+                console.log("get branch error: " + err);
+                console.log(JSON.stringify(result));
+                res.json(result);
+            });
+        });
 		app.get('/stories/:owner/:repo', function(req, res) {
 			var repoName = req.params.repo;
 			var owner = req.params.owner;
 			console.log("get stories for repo: " + repoName + " and owner: " + owner);
-			githubEnterprise.pullRequests.getAll({ user: owner, repo: repoName }, function (err, stories) {
+			githubEnterprise.pullRequests.getAll(
+                {
+                    user: owner,
+                    repo: repoName,
+                    per_page: 100
+                },
+            function (err, stories) {
 				console.log("get stories from repo error: " + err);
 				res.json(stories);
 			});
 		});
+        app.get('/compare/:owner/:repo/:base/:head', function(req, res) {
+            console.log(req.params.owner);
+            console.log(req.params.repo);
+            console.log(req.params.base);
+            console.log(req.params.head);
+            githubEnterprise.repos.compareCommits(
+            {
+                user: req.params.owner,
+                repo: req.params.repo,
+                base: req.params.base,
+                head: req.params.head
+            }, 
+            function(e, compareResult) {
+                if (e) {
+                    console.log(e);
+                }
+                res.json(compareResult);
+            });
+        });
 	});
 
 	//app.resource('/auth', auth);
