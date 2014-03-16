@@ -27,6 +27,7 @@ var userSchema = new mongoose.Schema({
 		login: String,
 		accessToken: String,
 		enterprise: {
+			domain: String,
 			username: { type: String, index: true },
 			password: String
 		}
@@ -36,37 +37,17 @@ var userSchema = new mongoose.Schema({
 
 mongoose.model('User', userSchema);
 
-var commitSchema = new mongoose.Schema({
-	id: String
+var environmentSchema = new mongoose.Schema({
+	shortName: String,
+	fullName: String,
+	branch: String,
+	cssClass: String
 });
 
 var projectSchema = new mongoose.Schema({
 	name: String,
-	commits: [commitSchema]
+	createdOn: { type: Date, default: Date.now },
+	environments: [environmentSchema]
 });
 
-// var storySchema = new mongoose.Schema({
-//	title: String,
-//	description: String,
-//	status: String,
-//	labels: [String],
-//	createdOn: Date,
-//	createdBy: String,
-//	requester: String,
-//	assignee: String,
-//	comments: [String]
-// });
-
-// var stageSchema = new mongoose.Schema({
-//	name: String,
-//	stories: [storySchema]
-// });
-
-// mongoose.model('Stage', stageSchema);
-
-// var projectSchema = new mongoose.Schema({
-//	name: String,
-//	stages: [stageSchema]
-// });
-
-// mongoose.model('Project', projectSchema);
+mongoose.model('Project', projectSchema);
