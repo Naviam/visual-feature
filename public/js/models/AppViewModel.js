@@ -161,5 +161,5 @@ function AppViewModel(model) {
     self.setCurrentRepository = function (repo) {
         console.log(repo);
         self.currentRepository(new repository(repo));
-    }
+    };
 }
