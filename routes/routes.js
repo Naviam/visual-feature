@@ -1,9 +1,14 @@
 module.exports = function (app, passport) {
-	var db = require('../model/db');
+    // databases
+    var client = require('../model/redis');
+	var db = require('../model/mongodb');
 	var mongoose = require('mongoose');
 	var schema = require('../model/schema');
 
+    // schemas
 	var User = mongoose.model('User');
+
+    // github
 	var GitHubApi = require("github");
 	var github = new GitHubApi(
 	{
@@ -43,6 +48,73 @@ module.exports = function (app, passport) {
 		});
 	});
 
+    app.get('/test', function(req, res, next) {
+        client.set('github-github.servicechannel.com-test', 'test', redis.print);
+    });
+
+    app.namespace('/projects', function() {
+
+    });
+
+    app.namespace('/api', function() {
+        // Accounts API
+        app.namespace('/accounts', function() {
+            // get single account by id
+            app.get('/:account', function(req, res, next) {
+
+            });
+            // create new account
+            app.post('/', function(req, res, next) {
+
+            });
+            // update account details
+            app.put('/:account', function(req, res, next) {
+
+            });
+            // remove account (close it)
+            app.delete('/:account', function(req, res, next) {
+
+            });
+
+            // Account Users API
+            app.namespace('/users', function() {
+
+            });
+
+            // Account Projects API
+            app.namespace('/projects', function() {
+                // get all projects for user's account
+                app.get('/', function(req, res, next) {
+
+                });
+                // get single project by id
+                // we download everything related to the project as single json object
+                app.get('/:project', function(req, res, next) {
+
+                });
+                // create new project
+                app.post('/', function(req, res, next) {
+
+                });
+                // remove project
+                app.delete('/:project', function(req, res, next) {
+
+                });
+                // Project Webhooks API (receivers)
+                app.namespace('/webhooks', function() {
+                    // web hook endpoint to receive updates from github
+                    app.post('/github/:project', function(req, res, next) {
+
+                    });
+                    // web hook endpoint to receive updates from pivotal tracker
+                    app.post('/pivotal/:project', function(req, res, next) {
+
+                    });
+                });
+            });
+        });
+    });
+
 	app.namespace('/gitent', function() {
 		app.get('/login', views.login);
 		app.post('/login', function (req, res, next) {
@@ -76,7 +148,7 @@ module.exports = function (app, passport) {
 						username: username,
 						password: password
 					});
-			        res.redirect('/gitent/dashboard');
+                    res.redirect('/gitent/dashboard');
 				}
 			});
 		});
@@ -84,17 +156,17 @@ module.exports = function (app, passport) {
 			console.log('loading dashboard page with github enterprise');
 			githubEnterprise.user.get({}, function(err, usr) {
                 console.log(err);
-			    console.log(usr);
-			    githubEnterprise.user.getOrgs({}, function(err, orgs) {
-			        console.log(err);
-			        console.log(orgs);
+                console.log(usr);
+                githubEnterprise.user.getOrgs({}, function(err, orgs) {
+                    console.log(err);
+                    console.log(orgs);
                     res.render('dashboard_new', 
                         {
                             title: 'Naviam | Dashboard',
                             user: usr, 
                             orgs: orgs
                         });
-			    });
+                });
 			});
 		});
 		app.get('/repositories/:org', function(req, res) {
