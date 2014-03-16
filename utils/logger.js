@@ -10,7 +10,7 @@ var myCustomLevels = {
       critical: 'red',
       emergency: 'red'
     }
-  };
+};
 
 var log = logentries.logger({
 	token: '49b3c292-089e-4d6e-a58c-9bfaddb3ac86',
@@ -21,6 +21,9 @@ var log = logentries.logger({
 var winston = require('winston');
 winston.setLevels(myCustomLevels.levels);
 winston.addColors(myCustomLevels.colors);
+winston
+  .remove(winston.transports.Console)
+  .add(winston.transports.Console, { colorize: true, timestamp: true });
 log.winston(winston, { level: 'debug' });
 
 // display logentries errors in console.

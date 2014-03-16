@@ -8,6 +8,9 @@ module.exports = function (app, passport) {
     // schemas
 	var User = mongoose.model('User');
 
+    // logger
+    var log = require('../utils/logger');
+
     // github
 	var GitHubApi = require("github");
 	var github = new GitHubApi(
@@ -32,7 +35,7 @@ module.exports = function (app, passport) {
 	app.get('/repositories/:org', ensureAuthenticated, function(req, res) {
 		// console.log("GOT RES?", orgs);
 		var orgName = req.params.org;
-		console.log("get repos for org: " + orgName);
+		log.info("get repos for org: " + orgName);
 		github.repos.getFromOrg({org: orgName}, function (err, repos) {
 			console.log("get from org error: " + err);
 			res.json(repos);
@@ -41,7 +44,7 @@ module.exports = function (app, passport) {
 	app.get('/stories/:owner/:repo', ensureAuthenticated, function (req, res) {
 		var repoName = req.params.repo;
 		var owner = req.params.owner;
-		console.log("get stories for repo: " + repoName + " and owner: " + owner);
+		log.info("get stories for repo: " + repoName + " and owner: " + owner);
 		github.pullRequests.getAll({ user: owner, repo: repoName }, function (err, stories) {
 			console.log("get stories from repo error: " + err);
 			res.json(stories);
@@ -121,9 +124,9 @@ module.exports = function (app, passport) {
 			var domain = req.body.domain;
 			var username = req.body.username;
 			var password = req.body.password; //12iBYLzcPR2Ug
-			console.log(req.body.domain);
-			console.log(req.body.username);
-			console.log(req.body.password);
+			log.info(req.body.domain);
+			log.info(req.body.username);
+			log.info(req.body.password);
 			User.findOne(
 			{
 				'github.enterprise.username': username,
@@ -132,7 +135,7 @@ module.exports = function (app, passport) {
 			function(err, user) {
 				if (err) { res.redirect('/gitent/login'); }
 				if (!user) {
-					console.log('User has not been found.');
+					log.info('User has not been found.');
 					githubEnterprise = new GitHubApi(
 					{
 						version: "3.0.0", 
@@ -153,13 +156,13 @@ module.exports = function (app, passport) {
 			});
 		});
 		app.get('/dashboard', function(req, res) {
-			console.log('loading dashboard page with github enterprise');
+			log.info('loading dashboard page with github enterprise');
 			githubEnterprise.user.get({}, function(err, usr) {
-                console.log(err);
-                console.log(usr);
+                log.error(err);
+                log.debug(usr);
                 githubEnterprise.user.getOrgs({}, function(err, orgs) {
-                    console.log(err);
-                    console.log(orgs);
+                    log.error(err);
+                    log.debug(orgs);
                     res.render('dashboard_new', 
                         {
                             title: 'Naviam | Dashboard',
@@ -171,7 +174,7 @@ module.exports = function (app, passport) {
 		});
 		app.get('/repositories/:org', function(req, res) {
 			var orgName = req.params.org;
-			console.log("get repos for org: " + orgName);
+			log.info("get repos for org: " + orgName);
 			githubEnterprise.repos.getFromOrg({org: orgName}, function (err, repos) {
 				console.log("get from org error: " + err);
 				res.json(repos);
@@ -192,15 +195,15 @@ module.exports = function (app, passport) {
                 per_page: 100
             },
             function(err, result) {
-                console.log("get branch error: " + err);
-                console.log(JSON.stringify(result));
+                log.error("get branch error: " + err);
+                log.info(JSON.stringify(result));
                 res.json(result);
             });
         });
 		app.get('/stories/:owner/:repo', function(req, res) {
 			var repoName = req.params.repo;
 			var owner = req.params.owner;
-			console.log("get stories for repo: " + repoName + " and owner: " + owner);
+			log.info("get stories for repo: " + repoName + " and owner: " + owner);
 			githubEnterprise.pullRequests.getAll(
                 {
                     user: owner,
@@ -208,15 +211,15 @@ module.exports = function (app, passport) {
                     per_page: 100
                 },
             function (err, stories) {
-				console.log("get stories from repo error: " + err);
+				log.info("get stories from repo error: " + err);
 				res.json(stories);
 			});
 		});
         app.get('/compare/:owner/:repo/:base/:head', function(req, res) {
-            console.log(req.params.owner);
-            console.log(req.params.repo);
-            console.log(req.params.base);
-            console.log(req.params.head);
+            log.info(req.params.owner);
+            log.info(req.params.repo);
+            log.info(req.params.base);
+            log.info(req.params.head);
             githubEnterprise.repos.compareCommits(
             {
                 user: req.params.owner,
@@ -226,7 +229,7 @@ module.exports = function (app, passport) {
             }, 
             function(e, compareResult) {
                 if (e) {
-                    console.log(e);
+                    log.error(e);
                 }
                 res.json(compareResult);
             });
