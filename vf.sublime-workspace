@@ -4,20 +4,136 @@
 		"selected_items":
 		[
 			[
+				"get",
+				"getBranches"
+			],
+			[
+				"Res",
+				"result"
+			],
+			[
+				"Err",
+				"error"
+			],
+			[
+				"re",
+				"repository"
+			],
+			[
+				"repo",
+				"repo"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"environmentS",
+				"environmentSetupSchema"
+			],
+			[
+				"en",
+				"environmentSetups"
+			],
+			[
+				"e",
+				"environmentSchema"
+			],
+			[
+				"input",
+				"input"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"c",
+				"count"
+			],
+			[
+				"ge",
+				"getCommits"
+			],
+			[
+				"sc",
+				"scard"
+			],
+			[
+				"pr",
+				"print"
+			],
+			[
+				"rep",
+				"repo"
+			],
+			[
+				"Ser",
+				"ServiceClick"
+			],
+			[
+				"com",
+				"commits"
+			],
+			[
+				"err",
+				"error"
+			],
+			[
+				"gith",
+				"github"
+			],
+			[
+				"red",
+				"redisClient"
+			],
+			[
+				"form",
+				"form"
+			],
+			[
+				"fo",
+				"form"
+			],
+			[
+				"con",
+				"container-fluid"
+			],
+			[
+				"fn",
+				"function"
+			],
+			[
+				"web",
+				"webhook"
+			],
+			[
+				"acc",
+				"account"
+			],
+			[
+				"account",
+				"accounts"
+			],
+			[
+				"pro",
+				"projects"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"ow",
+				"owner"
+			],
+			[
 				"marg",
 				"margin-top"
 			],
 			[
 				"labe",
 				"label-primary"
-			],
-			[
-				"rep",
-				"repoName"
-			],
-			[
-				"co",
-				"compareResult"
 			],
 			[
 				"o",
@@ -56,10 +172,6 @@
 				"foreach"
 			],
 			[
-				"en",
-				"environments"
-			],
-			[
 				"fu",
 				"fullname"
 			],
@@ -78,10 +190,6 @@
 			[
 				"r",
 				"req"
-			],
-			[
-				"e",
-				"ensureAuthenticated"
 			],
 			[
 				"in",
@@ -116,20 +224,12 @@
 				"btn-lg"
 			],
 			[
-				"c",
-				"col-lg-3"
-			],
-			[
 				"input-sm",
 				"input-group-sm"
 			],
 			[
 				"user",
 				"username"
-			],
-			[
-				"form",
-				"form-group"
 			],
 			[
 				"t",
@@ -144,10 +244,6 @@
 				"commitSchema"
 			],
 			[
-				"re",
-				"redirect"
-			],
-			[
 				"ex",
 				"express"
 			],
@@ -158,10 +254,6 @@
 			[
 				"ac",
 				"accounts"
-			],
-			[
-				"f",
-				"fun	Function"
 			],
 			[
 				"S",
@@ -178,10 +270,6 @@
 			[
 				"req",
 				"require"
-			],
-			[
-				"pro",
-				"profile"
 			],
 			[
 				"de",
@@ -206,10 +294,6 @@
 			[
 				"int",
 				"integrationSchema"
-			],
-			[
-				"con",
-				"console"
 			],
 			[
 				"mon",
@@ -248,10 +332,6 @@
 				"clientSecret"
 			],
 			[
-				"sc",
-				"servicechannel"
-			],
-			[
 				"fun",
 				"function"
 			]
@@ -271,7 +351,31 @@
 			"file": "routes/routes.js",
 			"settings":
 			{
-				"buffer_size": 5797,
+				"buffer_size": 8243,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "testredis.js",
+			"settings":
+			{
+				"buffer_size": 5179,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 5446,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "node_modules/github/index.js",
+			"settings":
+			{
+				"buffer_size": 29007,
 				"line_ending": "Unix"
 			}
 		},
@@ -279,7 +383,7 @@
 			"file": "public/js/models/AppViewModel.js",
 			"settings":
 			{
-				"buffer_size": 5851,
+				"buffer_size": 5954,
 				"line_ending": "Unix"
 			}
 		},
@@ -295,31 +399,7 @@
 			"file": "model/schema.js",
 			"settings":
 			{
-				"buffer_size": 1445,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/layout.jade",
-			"settings":
-			{
-				"buffer_size": 655,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/login.jade",
-			"settings":
-			{
-				"buffer_size": 863,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/index.jade",
-			"settings":
-			{
-				"buffer_size": 920,
+				"buffer_size": 1479,
 				"line_ending": "Unix"
 			}
 		}
@@ -430,16 +510,26 @@
 	},
 	"file_history":
 	[
+		"/Users/vitalihatalski/visual-feature/views/index.jade",
+		"/Users/vitalihatalski/visual-feature/views/login.jade",
+		"/Users/vitalihatalski/visual-feature/views/layout.jade",
+		"/Users/vitalihatalski/visual-feature/redis.js",
+		"/Users/vitalihatalski/visual-feature/views/createproject.jade",
+		"/Users/vitalihatalski/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/vitalihatalski/visual-feature/testlink.js",
+		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/repos.js",
+		"/Users/vitalihatalski/visual-feature/node_modules/redis/examples/simple.js",
+		"/Users/vitalihatalski/visual-feature/app_old.js",
+		"/Users/vitalihatalski/visual-feature/model/usersRepository.js",
+		"/Users/vitalihatalski/visual-feature/package.json",
 		"/Users/vitalihatalski/visual-feature/routes/accounts.js",
 		"/Users/vitalihatalski/visual-feature/public/css/site.css",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/pullRequests.js",
 		"/Users/vitalihatalski/visual-feature/routes/auth.js",
-		"/Users/vitalihatalski/visual-feature/app_old.js",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/index.js",
 		"/Users/vitalihatalski/visual-feature/public/css/dashboard.css",
 		"/Users/vitalihatalski/visual-feature/views/dashboard_new.jade",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/error.js",
-		"/Users/vitalihatalski/visual-feature/package.json",
 		"/Users/vitalihatalski/visual-feature/views/dashboard.jade",
 		"/Users/vitalihatalski/visual-feature/views/marketing_layout.jade",
 		"/Users/vitalihatalski/visual-feature/public/css/login.css",
@@ -448,14 +538,11 @@
 		"/Users/vitalihatalski/visual-feature/README.md",
 		"/Users/vitalihatalski/visual-feature/docs/json-objects.json",
 		"/Users/vitalihatalski/visual-feature/docs/github-orgs-object.json",
-		"/Users/vitalihatalski/visual-feature/views/login.jade",
-		"/Users/vitalihatalski/visual-feature/views/index.jade",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/user.js",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/userTest.js",
 		"/Users/vitalihatalski/visual-feature/node_modules/zombie/node_modules/request/node_modules/hawk/node_modules/sntp/test/index.js",
 		"/Users/vitalihatalski/visual-feature/node_modules/github/api/v3.0.0/routes.json",
 		"/Users/vitalihatalski/visual-feature/routes/views.js",
-		"/Users/vitalihatalski/visual-feature/views/layout.jade",
 		"/Users/vitalihatalski/visual-feature/model/account.js",
 		"/Users/vitalihatalski/visual-feature/docs/github-profile.json",
 		"/Users/vitalihatalski/visual-feature/docs/github-auth-object.json",
@@ -476,7 +563,6 @@
 		"/Users/vitalihatalski/visual-feature/routes/routes.js",
 		"/Users/vitalihatalski/Downloads/299.5a90a49d9d3fc4844a4fb93791854e5917b7948e.sql",
 		"/Users/vitalihatalski/visual-feature/github_objects.txt",
-		"/Users/vitalihatalski/visual-feature/model/usersRepository.js",
 		"/Users/vitalihatalski/visual-feature/signin.js",
 		"/Users/vitalihatalski/visual-feature/model/users.js",
 		"/Users/vitalihatalski/visual-feature/repositories/usersRepository.js",
@@ -501,7 +587,7 @@
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 73.0
 	},
 	"find_in_files":
 	{
@@ -517,6 +603,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"client.quit(function (err, res) {\n//     console.log(\"Exiting from quit command.\");\n// });",
+			"httpClient",
+			"getPage",
 			"0px",
 			"SSL routines",
 			"db",
@@ -558,8 +647,8 @@
 						"selection":
 						[
 							[
-								147,
-								147
+								863,
+								863
 							]
 						],
 						"settings":
@@ -568,6 +657,10 @@
 							[
 								{
 									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
 									"selector": "text.html"
 								},
 								{
@@ -590,7 +683,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -599,15 +692,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5797,
+						"buffer_size": 8243,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5128,
-								5128
+								3078,
+								3078
 							]
 						],
 						"settings":
@@ -629,13 +722,17 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2731.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -643,27 +740,40 @@
 				},
 				{
 					"buffer": 2,
-					"file": "public/js/models/AppViewModel.js",
+					"file": "testredis.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5851,
+						"buffer_size": 5179,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2597,
-								2597
+								1005,
+								1005
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 2242.0,
+						"translation.x": 51.0,
+						"translation.y": 1490.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -671,6 +781,127 @@
 				},
 				{
 					"buffer": 3,
+					"file": "README.md",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 5446,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 3.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "node_modules/github/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 29007,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18723,
+								18723
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8612.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/js/models/AppViewModel.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5954,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4021,
+								4021
+							]
+						],
+						"settings":
+						{
+							"auto_complete_triggers":
+							[
+								{
+									"characters": "<",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								}
+							],
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1661.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "views/dashboard_new.jade",
 					"semi_transient": false,
 					"settings":
@@ -682,81 +913,8 @@
 						"selection":
 						[
 							[
-								3657,
-								3657
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1084.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "model/schema.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1445,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								742,
-								742
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 67.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "views/layout.jade",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 655,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								528,
-								528
+								269,
+								269
 							]
 						],
 						"settings":
@@ -784,20 +942,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "views/login.jade",
+					"buffer": 7,
+					"file": "model/schema.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 863,
+						"buffer_size": 1479,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								409,
-								409
+								348,
+								348
 							]
 						],
 						"settings":
@@ -811,57 +969,24 @@
 								{
 									"characters": ".#",
 									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
+								},
+								{
+									"characters": ".#",
+									"selector": "text.html"
 								}
 							],
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 668.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "views/index.jade",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 920,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								526,
-								526
-							]
-						],
-						"settings":
-						{
-							"auto_complete_triggers":
-							[
-								{
-									"characters": "<",
-									"selector": "text.html"
-								},
-								{
-									"characters": ".#",
-									"selector": "text.html"
-								}
-							],
-							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
