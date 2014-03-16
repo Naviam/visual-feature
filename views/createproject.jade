@@ -1,0 +1,38 @@
+extends layout
+block stylesheet
+    link(rel="stylesheet",href="/css/dashboard.css")
+
+block navigation
+    div.navbar.navbar-inverse.navbar-fixed-top
+        div.container-fluid
+            div.navbar-header
+                button.navbar-toggle(type="button",data-toggle="collapse",data-target=".navbar-collapse")
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href="#") Naviam | Release Manager
+            div.navbar-collapse.collapse
+                ul.nav.navbar-nav.navbar-right
+                    li
+                        a(href="/SDLC/Setup",title="Software Development Life Cycle Setup")
+                            span.glyphicon.glyphicon-cog
+                            |  SDLC
+                    li.dropdown
+                        a.dropdown-toggle(href="#",data-toggle="dropdown")
+                            span.glyphicon.glyphicon-user
+                            |  vhatalski@naviam.com
+                            b.caret
+                        ul.dropdown-menu
+                            li
+                                a(href="/Profile")
+                                    span.glyphicon.glyphicon-picture
+                                    |  Profile
+                            li.divider
+                            li
+                                a(href="/Logout")
+                                    span.glyphicon.glyphicon-log-out
+                                    |  Logout
+block content
+    .container-fluid
+        form.form(role="form")
+            input.input(id="newenvironment", type="text")
