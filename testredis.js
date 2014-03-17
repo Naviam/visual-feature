@@ -33,6 +33,9 @@ and save to Redis SETs project ID + '-env-' + environment name
 11. Find if pull request commits present in any of environments 
 */
 
+// configuration
+var config = require('./lib/config');
+
 // database
 var client = require('./model/redis');
 var db = require('./model/mongodb');

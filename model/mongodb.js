@@ -1,16 +1,16 @@
 var mongoose = require('mongoose');
 var log = require('../lib/logger');
+var config = require('../lib/config');
 
-//var dbUri = 'mongodb://localhost/naviam';
-var dbUri = 'mongodb://rmuser:kXc3GX2cSvkj0@ds027519.mongolab.com:27519/naviam';
-mongoose.connect(dbUri);
+log.info('connecting to mongodb', { url: config.get('mongodb:url') });
+mongoose.connect(config.get('mongodb:url'));
 
 mongoose.connection.on('connected', function() {
-	log.info('Mongoose connected to ' + dbUri);
+	log.info('Mongoose connected to ', { url: config.get('mongodb:url') });
 });
 
 mongoose.connection.on('error', function(error) {
-	log.emergency('Mongoose connection error: ' + error);
+	log.emergency('Mongoose connection error: ', { error: error });
 });
 
 mongoose.connection.on('disconnected', function() {
