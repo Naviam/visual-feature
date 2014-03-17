@@ -6,8 +6,8 @@ var path = require('path');
 var passport = require('passport');
 var RedisStore = require('connect-redis')(express);
 var client = require('./model/redis');
-var log = require('./utils/logger');
-
+var log = require('./lib/logger');
+log.info(!module.parent);
 var app = express();
 app.set('host', process.env.IP || "127.0.0.1");
 app.set('port', process.env.PORT || 3000);
@@ -26,7 +26,5 @@ var routes = require('./routes/routes')(app, passport);
 app.use(express.static(path.join(__dirname, 'public')));
 
 http.createServer(app).listen(app.get('port'), app.get('host'), function() {
-  log.info(
-	'Express server listening on port ' + app.get('port') + 
-	' at host ' + app.get('host'));
+  log.info('Express server listening on port', { port: app.get('port'), host: app.get('host')});
 });

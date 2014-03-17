@@ -40,7 +40,7 @@ var mongoose = require('mongoose');
 var schema = require('./model/schema');
 
 // logger
-var log = require('./utils/logger');
+var log = require('./lib/logger');
 log.debug('testing logger debug');
 log.info('testing logger info');
 log.warning('testing logger warning');
@@ -74,15 +74,15 @@ github.authenticate({
 this.getBranches = function(repoName, callback) {
     var handleGetBranches = function(error, result) {
         if (error) {
-            console.log(error);
+            log.error(error);
             callback(error);
         }
         if (result) {
-            console.log('Number of branches: ' + result.length);
+            log.debug('Number of branches: ' + result.length);
             callback(null, result);
         }
         else {
-            console.log('No braches were found');
+            log.info('No braches were found');
             callback('No braches were found');
         }
     };
@@ -93,14 +93,14 @@ this.getRepository = function(callback) {
     var handleGetRepository = function(error, result) {
         console.time('handleGetRepository');
         if (error) {
-            console.log(error);
+            log.error(error);
         }
         var repository = {
             master: result.default_branch,
             name: result.name,
             description: result.description
         };
-        console.log(JSON.stringify(repository));
+        log.debug(JSON.stringify(repository));
         this.getBranches(repository.name, function(error, result) {
             github.repos.getBranches({});
         });
@@ -111,45 +111,40 @@ this.getRepository = function(callback) {
 };
 
 this.getRepositoryCommits = function(branch, callback) {
-    console.log(repoSet);
-    // console.log('-1-');
+    log.debug(repoSet);
     var getCommits = function(error, result) {
         console.time('getCommits');
         if (error) {
-            console.log(error);
+            log.error(error);
         }
-        console.log('Number of results: ' + result.length);
-        //console.log('-2-');
-        //client.sadd(repoSet, result[0].sha, redis.print);
+        log.info('Number of results: ' + result.length);
         result.forEach(function(value) {
-            //console.log(value.sha);
             client.sadd(repoSet, value.sha);
         });
         if (github.hasNextPage(result)) {
-            //console.log('-4-');
             client.scard(repoSet, function(error, count) {
-                if (error) console.log(error);
-                console.log('count: ' + count);
+                if (error) {
+                    log.error(error);
+                }
+                log.debug('count: ' + count);
                 if (count < 40000) {
-                    console.log(Date.now());
+                    log.debug(Date.now());
                     github.getNextPage(result, getCommits);
                 }
                 else {
                     client.quit(function (err, res) {
-                        console.log("Exiting from quit command.");
+                        log.info("Exiting from quit command.");
                     });
                 }
             }); 
         }
         else {
-            // console.log('-5-');
             client.scard(repoSet, function(error, count) {
                 callback(error, count);
             });
         }
         console.timeEnd('getCommits');
     };
-    // console.log('-222-');
     github.repos.getCommits(
         { 
             user: user, 
@@ -161,5 +156,5 @@ this.getRepositoryCommits = function(branch, callback) {
 };
 
 this.getRepositoryCommits('master', function(error, count) { 
-    console.log(count);
+    log.info(count);
 });
