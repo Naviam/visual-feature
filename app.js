@@ -5,11 +5,11 @@ var namespace = require('express-namespace');
 var path = require('path');
 var passport = require('passport');
 var RedisStore = require('connect-redis')(express);
-var client = require('./model/redis');
+var client = require('./lib/redis');
 var log = require('./lib/logger');
 var config = require('./lib/config');
 
-var app = express();
+var app = module.exports = express();
 app.set('host', process.env.IP || "127.0.0.1");
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -32,9 +32,13 @@ app.use(express.session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
-var routes = require('./routes/routes')(app, passport);
+if (!module.parent) {
+	var routes = require('./routes/routes')(app, passport);
+}
 app.use(express.static(path.join(__dirname, 'public')));
 
-http.createServer(app).listen(app.get('port'), app.get('host'), function() {
-  log.info('Express server listening', { port: app.get('port'), host: app.get('host')});
-});
+if (!module.parent) {
+	http.createServer(app).listen(app.get('port'), app.get('host'), function() {
+		log.info('Express server listening', { port: app.get('port'), host: app.get('host')});
+	});
+}

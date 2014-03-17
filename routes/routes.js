@@ -1,7 +1,7 @@
 module.exports = function (app, passport) {
     // databases
-    var client = require('../model/redis');
-	var db = require('../model/mongodb');
+    var client = require('../lib/redis');
+	var db = require('../lib/mongodb');
 	var mongoose = require('mongoose');
 	var schema = require('../model/schema');
 
