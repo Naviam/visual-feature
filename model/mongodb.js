@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var log = require('../utils/logger');
+var log = require('../lib/logger');
 
 //var dbUri = 'mongodb://localhost/naviam';
 var dbUri = 'mongodb://rmuser:kXc3GX2cSvkj0@ds027519.mongolab.com:27519/naviam';

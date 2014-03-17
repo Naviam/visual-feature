@@ -9,7 +9,7 @@ module.exports = function (app, passport) {
 	var User = mongoose.model('User');
 
     // logger
-    var log = require('../utils/logger');
+    var log = require('../lib/logger');
 
     // github
 	var GitHubApi = require("github");
@@ -33,11 +33,12 @@ module.exports = function (app, passport) {
 	app.get('/', views.index);
 
 	app.get('/repositories/:org', ensureAuthenticated, function(req, res) {
-		// console.log("GOT RES?", orgs);
 		var orgName = req.params.org;
 		log.info("get repos for org: " + orgName);
 		github.repos.getFromOrg({org: orgName}, function (err, repos) {
-			console.log("get from org error: " + err);
+			if (err) {
+                log.error("get from org error: " + err);
+            }
 			res.json(repos);
 		});
 	});
@@ -46,7 +47,10 @@ module.exports = function (app, passport) {
 		var owner = req.params.owner;
 		log.info("get stories for repo: " + repoName + " and owner: " + owner);
 		github.pullRequests.getAll({ user: owner, repo: repoName }, function (err, stories) {
-			console.log("get stories from repo error: " + err);
+			if (err) {
+                log.error("get pull requests error: " + err);
+            }
+            log.info("get stories from repo error: " + err);
 			res.json(stories);
 		});
 	});
@@ -176,7 +180,9 @@ module.exports = function (app, passport) {
 			var orgName = req.params.org;
 			log.info("get repos for org: " + orgName);
 			githubEnterprise.repos.getFromOrg({org: orgName}, function (err, repos) {
-				console.log("get from org error: " + err);
+				if (err) {
+                    log.error("get from org error: " + err);
+                }
 				res.json(repos);
 			});
 		});
@@ -195,7 +201,9 @@ module.exports = function (app, passport) {
                 per_page: 100
             },
             function(err, result) {
-                log.error("get branch error: " + err);
+                if (err) {
+                    log.error("get branch error: " + err);
+                }
                 log.info(JSON.stringify(result));
                 res.json(result);
             });
