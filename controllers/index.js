@@ -10,10 +10,17 @@ var github    = {};
 
 module.exports = function (app) {
 	this.githubAuthenticate = function(req, res) {
-		log.debug("User has been successfully authenticated.");
+		debugger;
+		log.debug("User has been successfully authenticated: %s", util.inspect(req.user));
+		github = new GitHubApi(
+		{
+			version: "3.0.0", 
+			timeout: 5000,
+			debug: true
+		});
 		github.authenticate({
 			type: 'oauth',
-			token: accessToken
+			token: req.user._doc.github.accessToken
 		});
 		req.session.regenerate(function(){
 			req.session.user = req.user;

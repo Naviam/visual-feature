@@ -29,7 +29,7 @@ function organization(org, parent) {
             self.repositories(data);
             var found = jQuery.grep(self.repositories(), function(r) {
                 // TODO: replace hardcoded name with user session variable
-                return r.name == "ServiceClick";
+                return r.name == "Fixxbook";
             });
             if (found.length == 1) {
                 window.viewmodel.setCurrentRepository(found[0]);
