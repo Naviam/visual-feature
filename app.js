@@ -12,7 +12,7 @@ var passportHelper = require('./lib/passportHelper');
 var log = require('./lib/logger');
 var onStreamWrite = function(message, encoding) { log.info(message.replace('\n', '')); };
 var config = require('./lib/config');
-var login = require('./controllers/login');
+var util = require('util');
 
 passport.serializeUser(passportHelper.serializeUser);
 passport.deserializeUser(passportHelper.deserializeUser);
@@ -47,12 +47,11 @@ app.use(passport.session());
 app.use(app.router);
 if (!module.parent) {
 	var routes = require('./controllers')(app);
+	log.debug(util.inspect(routes));
+	app.get('/login/github', passport.authenticate('github'));
+	app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }), routes.githubAuthenticate);
 }
 app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/logout', login.logout);
-app.get('/auth/github', passport.authenticate('github'));
-app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/' }), login.githubAuthenticate);
 
 if (!module.parent) {
 	http.createServer(app).listen(config.get('PORT'), config.get('IP'), function() {

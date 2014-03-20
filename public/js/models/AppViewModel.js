@@ -25,8 +25,7 @@ function organization(org, parent) {
     };
 
     self.getRepositories = function (org) {
-        var prefix = window.enterprise ? '/gitent' : '';
-        $.getJSON(prefix + "/repositories/" + org, function(data) {
+        $.getJSON("/repositories/" + org, function(data) {
             self.repositories(data);
             var found = jQuery.grep(self.repositories(), function(r) {
                 // TODO: replace hardcoded name with user session variable
@@ -80,8 +79,7 @@ function story(story, parent) {
     });
 
     self.identifyEnvironments = function() {
-        var prefix = window.enterprise ? '/gitent' : '';
-        $.getJSON(prefix + "/compare/" + parent.owner() + "/" + parent.name() + "/staging/" + self.ref(), 
+        $.getJSON("/compare/" + parent.owner() + "/" + parent.name() + "/staging/" + self.ref(), 
         function(compare) {
             if (compare.ahead_by === 0) {
                 self.environment("ST1");
@@ -105,8 +103,7 @@ function environment (parent, fullname, shortname, branchname, css) {
 	});
 
 	self.populateCommits = function(ownerName, repoName, branchName) {
-		var prefix = window.enterprise ? '/gitent' : '';
-        $.getJSON(prefix + "/user/" + ownerName + "/repo/" + repoName + "/branch/" + branchName, 
+        $.getJSON("/user/" + ownerName + "/repo/" + repoName + "/branch/" + branchName, 
         function(data) {
             self.commits.removeAll();
             $.each(data, function (index, value) {
@@ -135,8 +132,7 @@ function repository(repo, parent) {
     self.getCompletedStories = function (ownerName, repoName) {
         var self = this;
         self.currentStory = null;
-        var prefix = window.enterprise ? '/gitent' : '';
-        $.getJSON(prefix + "/stories/" + ownerName + "/" + repoName, function(data) {
+        $.getJSON("/stories/" + ownerName + "/" + repoName, function(data) {
             self.stories.removeAll();
             $.each(data, function (index, value) {
                 self.stories.unshift(new story(value, self));
