@@ -69,7 +69,7 @@ module.exports = function (app) {
             github.user.getOrgs({}, function(err, orgs) {
                 if (err) log.error(util.inspect(err));
                 log.debug(util.inspect(orgs));
-                res.render('dashboard_new', 
+                res.render('dashboard', 
                     {
                         title: 'Naviam | Dashboard',
                         user: usr, 

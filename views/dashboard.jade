@@ -3,49 +3,16 @@ block stylesheet
     link(rel="stylesheet",href="/css/dashboard.css")
 
 block navigation
-    div.navbar.navbar-default.navbar-static-top
-        div.container
+    div.navbar.navbar-inverse.navbar-fixed-top
+        div.container-fluid
             div.navbar-header
                 button.navbar-toggle(type="button",data-toggle="collapse",data-target=".navbar-collapse")
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-                a.navbar-brand(href="#") Naviam
+                a.navbar-brand(href="#") Naviam | Release Manager
             div.navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li.dropdown
-                        a.dropdown-toggle(href="#",data-toggle="dropdown") Github
-                            b.caret
-                        ul.dropdown-menu
-                            li.active
-                                a(href="/accounts/github/hatalski",title="Switch to hatalski account") hatalski
-                            li
-                                a(href="/accounts/github/naviamtest",title="Switch to naviamtest account") naviamtest
-                            li
-                                a(href="/accounts/github/scteamcity",title="Switch to scteamcity account") scteamcity
-                            li.divider
-                            li.dropdown-header Enterprise (ServiceChannel)
-                            li
-                                a(href="#",title="Switch to vhatalski account") vhatalski
-                            li
-                                a(href="#",title="Switch to gitadmin account") gitadmin
-                    li.dropdown
-                        a.dropdown-toggle(href="#",data-toggle="dropdown") Bitbucket
-                            b.caret
-                        ul.dropdown-menu
-                            li
-                                a(href="#",title="Switch to vhatalski account") vhatalski
-                            li
-                                a(href="#",title="Switch to gitadmin account") gitadmin
                 ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href="/Integrations",title="Code Hosting, Product Management and Continuous Integrations services integrations")
-                            span.glyphicon.glyphicon-transfer
-                            |  Integrations
-                    li
-                        a(href="/Environments",title="Infrastructure Environments where code is deployed to")
-                            span.glyphicon.glyphicon-cloud
-                            |  Environments
                     li
                         a(href="/SDLC/Setup",title="Software Development Life Cycle Setup")
                             span.glyphicon.glyphicon-cog
@@ -66,62 +33,57 @@ block navigation
                                     span.glyphicon.glyphicon-log-out
                                     |  Logout
 block content
-    div.container
-        div.row.row-offcanvas.row-offcanvas-right
-            div.col-xs-12.col-sm-9
-                p.pull-right.visible-xs
-                    button.btn.btn-primary.btn-xs(type="button",data-toggle="offcanvas") toggle nav
-                nav.navbar.navbar-default(role="navigation")
-                    div.navbar-header
-                        button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse")
-                            span.sr-only Toggle navigation
-                            span.icon-bar
-                            span.icon-bar
-                            span.icon-bar
-                        a.navbar-brand(href="#") Environments
-                    div.collapse.navbar-collapse.navbar-ex1-collapse
-                        div.btn-group.navbar-btn
-                            button.btn.btn-default(type="button") DEV
-                            button.btn.btn-default(type="button") QA1
-                            button.btn.btn-default(type="button") QA2
-                            button.btn.btn-default(type="button") STAGING
-                        form.navbar-form.navbar-right(role="search")
-                            div.form-group
-                                input.form-control(type="text", placeholder="Search stories")
-                            button.btn.btn-default(type="submit") Submit
-                div.row(data-bind="with: currentRepository")
-                    <!-- ko foreach: stories -->
-                    div.col-6.col-sm-6.col-lg-4
-                        h5.css-truncate-target.text-primary
-                            a(data-bind="attr: {href: html_url, title: title}",target="_blank")
-                                span(data-bind="text: number") 
-                                | : 
-                                span(data-bind="text: title")
-                        p
-                            p(data-bind="visible: storyLinks().length > 0")
-                                | story:
-                                |  
-                                <!-- ko foreach: storyLinks -->
-                                a(data-bind="attr: { href: url, title: title }", target="_blank")
-                                    span.label.label-primary(data-bind="text: text")
-                                <!-- /ko -->
-                            p
-                                | on: 
-                                |  
-                                span.label.label-primary staging
-                            em(data-bind="text: normalizedBody")
-                    <!-- /ko -->
-            div#sidebar.col-xs-6.col-sm-3.sidebar-offcanvas(role="navigation")
-                div#accordion.well.sidebar-nav4
-                    ul.nav(data-bind="foreach: organizations")
+    div.container-fluid
+        .row(data-bind="with: currentRepository")
+            .col-sm-3.col-md-2.sidebar
+                h4.page-header(style="margin-top:20px") ServiceClick
+                ul.nav.nav-sidebar(data-bind="foreach: environments")
+                    li
+                        a(href="#")
+                            //span.badge(data-bind="text: count")
+                            span.label.pull-right(data-bind="text: branchname, css: css")
+                            span(data-bind="text: fullname")
+                ul.nav.nav-sidebar(data-bind="foreach: $root.organizations")
+                    li
+                        a.accordion-toggle(data-bind="click: toggleCollapse, attr: { href: '#' + login }",data-toggle="collapse",data-parent="#accordion")
+                            span.glyphicon.glyphicon-collapse-down(data-bind="css: { 'glyphicon-collapse-down': isCollapsed(), 'glyphicon-expand': !isCollapsed() }")
+                            |  
+                            span(data-bind="text: login")
+                    ul.nav.panel-collapse.collapse(data-bind="foreach: repositories, attr: {id: login}")
                         li
-                            a.accordion-toggle(data-bind="click: toggleCollapse, attr: { href: '#' + login }",data-toggle="collapse",data-parent="#accordion")
-                                span.glyphicon.glyphicon-collapse-down(data-bind="css: { 'glyphicon-collapse-down': isCollapsed(), 'glyphicon-expand': !isCollapsed() }")
-                                |  
-                                span(data-bind="text: login")
-                        ul.nav.panel-collapse.collapse(data-bind="foreach: repositories, attr: {id: login}")
-                            li
-                                a(data-bind="text: name, click: $root.setCurrentRepository, attr: { href: url, title: name }")
+                            a(data-bind="text: name, click: $root.setCurrentRepository, attr: { href: url, title: name }")
+            .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+                // h4.page-header ServiceClick
+                //- form.navbar-form(role="search")
+                //-     .input-group
+                //-         input.form-control(type="text", placeholder="Search")
+                //-         span.input-group-btn
+                //-             button.btn.btn-default(type="submit") Go!
+                .table-responsive
+                    table.table.table-striped
+                        tbody
+                            <!-- ko foreach: stories -->
+                            tr
+                                td
+                                    span.label.label-primary(data-bind="text: environment")
+                                td
+                                    h5.css-truncate-target.text-primary(style="margin-top: 0px")
+                                        a(data-bind="attr: {href: html_url, title: title}",target="_blank")
+                                            span(data-bind="text: number") 
+                                            | : 
+                                            span(data-bind="text: normalizedBody")
+                                td
+                                    p(data-bind="visible: storyLinks().length > 0", style="margin-bottom: 0px")
+                                        <!-- ko foreach: storyLinks -->
+                                        a(data-bind="attr: { href: url, title: title }", target="_blank")
+                                            span.label.label-primary(data-bind="text: text")
+                                        br
+                                        <!-- /ko -->
+                                td
+                                    em(data-bind="text: ref")
+                                    br
+                                    em(data-bind="text: sha")
+                            <!-- /ko -->
 block scripts
     script(src='/js/socket.io.js')
     script(src='/js/knockout-2.3.0.js')
