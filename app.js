@@ -46,7 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
 if (!module.parent) {
-	var routes = require('./routes/routes')(app, passport);
+	var routes = require('./controllers')(app);
 }
 app.use(express.static(path.join(__dirname, 'public')));
 
