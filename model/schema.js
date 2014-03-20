@@ -5,11 +5,15 @@ var organizationSchema = new mongoose.Schema({
 	name: String
 });
 
+var integrationTypes = 'github github-enterprise bitbucket'.split(' ');
+
 var accountSchema = new mongoose.Schema({
 	name: String,
 	createdOn: { type: Date, default: Date.now },
 	createdBy: String,
-	github: {
+	integration: {
+		type: { type: String, enum: integrationTypes, index: true },
+		domain: String,
 		organizations: [organizationSchema]
 	}
 });
@@ -18,19 +22,16 @@ mongoose.model('Account', accountSchema);
 
 var userSchema = new mongoose.Schema({
 	email: { type: String, index: true },
-	name: String,
+	fullname: String,
 	password: String,
 	createdOn: { type: Date, default: Date.now },
 	lastLogin: Date,
-	github: {
+	auth: {
 		id: { type: Number, index: true },
-		login: String,
-		accessToken: String,
-		enterprise: {
-			domain: String,
-			username: { type: String, index: true },
-			password: String
-		}
+		type: { type: String, enum: integrationTypes, index: true },
+		domain: String,
+		username: { type: String, index: true },
+		email: String
 	},
 	accounts: [accountSchema]
 });

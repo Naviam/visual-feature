@@ -4,11 +4,9 @@
 			"secret": "naviam-rm-94ec9j0fr4cj3fvrew21r3d7"
 		}
 	},
-	"github": {
-		"GITHUB_CLIENT_ID": "d24dfef0f98062c793f6",
-		"GITHUB_CLIENT_SECRET": "e5fe11d7e985757ebf8af9d48392b8f8077d1fb9",
-		"GITHUB_CALLBACK_URL": "http://localhost:3000/auth/github/callback"
-	},
+	"GITHUB_CLIENT_ID": "d24dfef0f98062c793f6",
+	"GITHUB_CLIENT_SECRET": "e5fe11d7e985757ebf8af9d48392b8f8077d1fb9",
+	"GITHUB_CALLBACK_URL": "http://localhost:3000/auth/github/callback",
 	"logentries": {
 		"token": "49b3c292-089e-4d6e-a58c-9bfaddb3ac86",
 		"custom": {

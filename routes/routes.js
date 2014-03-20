@@ -26,7 +26,7 @@ module.exports = function (app, passport) {
 		port: 80,
 		debug: false
 	});
-	var auth = require('./auth')(app, github, passport, db);
+	//var auth = require('./auth')(app, github, passport, db);
 	var views = require('./views');
 	var accounts = require('./accounts')(app, github, passport, db);
 
