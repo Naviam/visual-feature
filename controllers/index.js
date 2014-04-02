@@ -55,8 +55,6 @@ module.exports = function (app) {
 			else {
 				req.session.regenerate(function() {
 					req.session.user = {
-						//login: usr.login,
-						//userId: usr.id,
 						accessType: 'basic',
 						username: req.body.username,
 						password: req.body.password
@@ -111,21 +109,17 @@ module.exports = function (app) {
 
 	app.get('/dashboard', function(req, res) {
 		var github = gh.get(req.session);
-		github.user.get({}, function(err, usr) {
+		github.user.getOrgs({}, function(err, orgs) {
             if (err) {
 				log.error(util.inspect(err));
             }
-            log.info(util.inspect(usr));
-            github.user.getOrgs({}, function(err, orgs) {
-                if (err) log.error(util.inspect(err));
-                log.info(util.inspect(orgs));
-                res.render('dashboard', {
-                    title: 'Naviam | Dashboard',
-                    user: usr, 
-                    orgs: orgs
-                });
+            log.info(util.inspect(orgs));
+            res.render('dashboard', {
+                title: 'Naviam | Dashboard',
+                user: req.session.user, 
+                orgs: orgs
             });
-		});
+        });
 	});
 
 	app.get('/repositories/:org', function(req, res) {
@@ -146,7 +140,7 @@ module.exports = function (app) {
         var owner = req.params.owner;
         var self = this;
         self.currentLink = '';
-        //while (githubEnterprise.hasNextPage(self.currentLink))
+
         github.repos.getCommits(
         {
             user: owner,
