@@ -37,8 +37,8 @@ and save to Redis SETs project ID + '-env-' + environment name
 var config = require('./lib/config');
 
 // database
-var client = require('./model/redis');
-var db = require('./model/mongodb');
+var client = require('./lib/redis');
+var db = require('./lib/mongodb');
 var mongoose = require('mongoose');
 var schema = require('./model/schema');
 
@@ -63,10 +63,11 @@ var github = new GitHubApi(
     version: '3.0.0',
     timeout: 5000,
     protocol: 'http',
-    url: '/api/v3',
+    //url: '/api/v3',
+    pathPrefix: '/api/v3',
     port: 80,
     host: host,
-    debug: false
+    debug: true
 });
 github.authenticate({
     type: 'basic',
@@ -81,7 +82,7 @@ this.getBranches = function(repoName, callback) {
             callback(error);
         }
         if (result) {
-            log.debug('Number of branches: ' + result.length);
+            log.info('Number of branches: ' + result.length);
             callback(null, result);
         }
         else {
@@ -103,7 +104,7 @@ this.getRepository = function(callback) {
             name: result.name,
             description: result.description
         };
-        log.debug(JSON.stringify(repository));
+        log.info(JSON.stringify(repository));
         this.getBranches(repository.name, function(error, result) {
             github.repos.getBranches({});
         });
@@ -114,7 +115,7 @@ this.getRepository = function(callback) {
 };
 
 this.getRepositoryCommits = function(branch, callback) {
-    log.debug(repoSet);
+    log.info(repoSet);
     var getCommits = function(error, result) {
         console.time('getCommits');
         if (error) {
@@ -129,9 +130,9 @@ this.getRepositoryCommits = function(branch, callback) {
                 if (error) {
                     log.error(error);
                 }
-                log.debug('count: ' + count);
+                log.info('count: ' + count);
                 if (count < 40000) {
-                    log.debug(Date.now());
+                    log.info(Date.now());
                     github.getNextPage(result, getCommits);
                 }
                 else {
