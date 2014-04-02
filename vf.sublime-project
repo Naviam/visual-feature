@@ -4,10 +4,6 @@
 		{
 			"follow_symlinks": true,
 			"path": "."
-		},
-		{
-			"follow_symlinks": true,
-			"path": "/Users/vitalihatalski/Downloads/week_1_introduction"
 		}
 	]
 }
