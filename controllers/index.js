@@ -1,13 +1,9 @@
 var GitHubApi = require("github");
 var gh        = require("../lib/githubHelper");
-var mongoose  = require('mongoose');
 var util      = require('util');
 var client    = require('../lib/redis');
-var db        = require('../lib/mongodb');
 var log       = require('../lib/logger');
 var repo      = require('../model/repo');
-var schema    = require('../model/schema');
-var User      = mongoose.model('User');
 
 module.exports = function (app) {
 	this.githubAuthenticate = function(req, res) {
@@ -34,6 +30,9 @@ module.exports = function (app) {
 			}
 		});
 	};
+	app.get('/', function(req, res) {
+        res.render('index', { title: 'Naviam' });
+    });
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect('/');
@@ -72,7 +71,6 @@ module.exports = function (app) {
 
 						var params = { provider: provider, accessType: 'basic', profile: { id: usr.id, username: usr.login } };
 						repo.findOrCreateGithubUser(params, function(err, user) {
-							// return done(err, user);
 							if (err) { 
 								res.redirect('/login/github-enterprise'); 
 							}
@@ -85,28 +83,6 @@ module.exports = function (app) {
 			}
 		});
 	});
-
-	app.get('/', function(req, res) {
-        res.render('index', { title: 'Naviam' });
-    });
-
-	// app.get('/account/add', function(req, res) {
-	//	var github = gh.get(req.session);
-	//	github.user.getOrgs({}, function(err, orgs) {
-	//		if (err) log.error(util.inspect(err));
-	//		log.info(util.inspect(orgs));
-	//		res.render('createaccount', 
-	//			{
-	//				title: 'Naviam | Create Account',
-	//				orgs: orgs
-	//			});
-	//	});
-	// });
-
-	// app.post('/account', function(req, res) {
-	//	log.info(req.body);
-	// });
-
 	app.get('/dashboard', function(req, res) {
 		var github = gh.get(req.session);
 		github.user.getOrgs({}, function(err, orgs) {
@@ -192,30 +168,6 @@ module.exports = function (app) {
             res.json(compareResult);
         });
     });
-
-	// app.get('/repositories/:org', function(req, res) {
-	//	var orgName = req.params.org;
-	//	log.info("get repos for org: " + orgName);
-	//	github.repos.getFromOrg({org: orgName}, function (err, repos) {
-	//		if (err) {
- //                log.error("get from org error: " + err);
- //            }
-	//		res.json(repos);
-	//	});
-	// });
-
-	// app.get('/stories/:owner/:repo', function (req, res) {
-	//	var repoName = req.params.repo;
-	//	var owner = req.params.owner;
-	//	log.info("get stories for repo: " + repoName + " and owner: " + owner);
-	//	github.pullRequests.getAll({ user: owner, repo: repoName }, function (err, stories) {
-	//		if (err) {
- //                log.error("get pull requests error: " + err);
- //            }
- //            log.info("get stories from repo error: " + err);
-	//		res.json(stories);
-	//	});
-	// });
 
 	function ensureAuthenticated(req, res, next) {
 		if (req.session.user) { return next(); }
