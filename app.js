@@ -26,9 +26,7 @@ passport.use(new GitHubStrategy({
 		clientSecret: config.get('GITHUB_CLIENT_SECRET'),
 		callbackURL: config.get('GITHUB_CALLBACK_URL'),
 		scope: "user,repo"
-	}, function(accessToken, refreshToken, profile, done) {
-		passportHelper.obtainGithubAccessToken(accessToken, refreshToken, profile, done);
-	})
+	}, passportHelper.obtainGithubAccessToken)
 );
 
 var app = module.exports = express();

@@ -1,64 +1,77 @@
 var mongoose = require('mongoose');
 var schema   = require('./schema');
 var log      = require('../lib/logger');
+var ObjectId = require('mongoose').Types.ObjectId;
 var User     = mongoose.model('User');
 var Account  = mongoose.model('Account');
+var SourceProvider  = mongoose.model('SourceProvider');
 
-exports.findOrCreateGithubUser = function (github, callback) {
+exports.findOrCreateGithubSourceProvider = function(params, callback) {
+	SourceProvider.findOne({
+		name: params.name, 
+		domain: params.domain
+	}, function(error, provider) {
+		if (! provider) {
+			log.info('provider has not been found');
+			provider = new SourceProvider({
+				name: params.name,
+				domain: params.domain,
+				protocol: params.protocol || 'https', 
+				query: params.query, 
+				port: params.port || 443
+			});
+			provider.save(function(saveError, newProvider) {
+				if (saveError) {
+					log.error('error to save provider: %s', saveError);
+				}
+				callback(saveError, newProvider);
+			});
+		} else {
+			callback(null, provider);
+		}
+	});
+};
+
+var findOrCreateGithubUser = exports.findOrCreateGithubUser = function (params, callback) {
 	User.findOne({
-		'github.id' : github.id,
-		'github.enterprise': github.enterprise
-	}, function( err, user) { 
-		if(! err) {
-			user.lastLogin = Date.now();
-			user.github.accessToken = github.accessToken;
-			user.save( function( err, user) { log.info(' User saved:', user); });
-			callback(err, user);
+		userId: params.profile.id, 
+		login:  params.profile.username,
+		sourceProvider: new ObjectId(params.provider.id)
+	})
+	//.populate('sourceProvider')
+	//.lean()
+	.exec(function(err, user) {
+		if (err) {
+			log.error('find user error %s', err);
+		}
+		if (! user) {
+			log.info('User %s has not been found', params.profile.username);
+			user = new User({
+				userId: params.profile.id,
+				login: params.profile.username,
+				accessToken: params.accessToken,
+				accessType:  params.accessType || 'oauth',
+				sourceProvider: params.provider
+			});
+			user.save(function(error, result) {
+				if (error) {
+					log.error('error occured when we tried to create new user: %s', error);
+				}
+				findOrCreateGithubUser(params, callback);
+			});
 		}
 		else {
-			var gh = new GitHubApi().authenticate({
-				type: 'oauth',
-				token: github.accessToken
-			});
-			
-			// create user
-			user = new User({
-				email: github.email,
-				name: github.name,
-				github: {
-					id: github.id,
-					login: github.login,
-					accessToken: github.accessToken
-				},
-				lastLogin: Date.now()
-			});
-			user.save();
-
-			// add user accounts
-			gh.user.getOrgs({}, function(err, orgs) {
-                if (err) log.error(util.inspect(err));
-				//log.debug(util.inspect(orgs));
-				for (var i = orgs.length - 1; i >= 0; i--) {
-					var account = new Account({ createdBy: user._id, name: orgs[i].login });
-					user.accounts.push(account);
-					user.save();
-				}
-				callback(err, user);
-			});
+			log.info('User %s has been found', user.login);
+			//log.info('User provider domain is %s', user.sourceProvider.domain);
+			callback(null, user);
 		}
 	});
 };
 
-exports.getUserById = function(id, callback) {
-	User.findById(id, function (err, user) {
-		if (err) {
-			log.error("get user by id error: %s", util.inspect(err));
-		}
-		callback(err, user);
-	});
+exports.findUserById = function (id, callback) {
+	User.findById(id, callback);
 };
 
-exports.createAccount = function(account, callback) {
-	var acc = new Account(account);
-	acc.save();
+exports.findSourceProviderById = function (id, callback) {
+	SourceProvider.findById(id, callback);
 };

@@ -29,6 +29,17 @@ body {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
+
+}
+.footer {
+  max-width: 140px;
+  padding-top: 15px;
+  margin: 0 auto;
+}
+.masthead {
+  max-width: 110px;
+  padding-top: 15px;
+  margin: 0 auto;
 }
 
 /* Customize container */
@@ -38,13 +49,16 @@ body {
   }
 }
 .container-narrow > hr {
-  margin: 30px 0;
+  margin: 0px 0;
 }
-
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
+  background-color: transparent;
+  max-width: 430px;
+  padding: 15px;
+  margin: 0 auto;
 }
 .jumbotron .btn {
   padding: 14px 24px;
